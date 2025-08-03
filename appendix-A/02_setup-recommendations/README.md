@@ -1,8 +1,7 @@
-## Python and Environment Setup Recommendations
+## Pythonと環境セットアップの推奨事項
 
 
 
-Please see the [README.md](../../setup/README.md) in the [setup](../../setup) directory for Python installation and setup recommendations.
-
+Pythonインストールとセットアップの推奨事項については、[setup](../../setup)ディレクトリの[README.md](../../setup/README.md)をご覧ください。
 
 

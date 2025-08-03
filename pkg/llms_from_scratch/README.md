@@ -1,20 +1,20 @@
-# `llms-from-scratch` PyPI Package
+# `llms-from-scratch` PyPIパッケージ
 
-This optional PyPI package lets you conveniently import code from various chapters of the *Build a Large Language Model From Scratch* book.
-
-&nbsp;
-## Installation
+このオプションのPyPIパッケージを使用すると、*Build a Large Language Model From Scratch*（スクラッチから大規模言語モデルを構築）の本の各章のコードを便利にインポートできます。
 
 &nbsp;
-### From PyPI
+## インストール
 
-Install the `llms-from-scratch` package from the official [Python Package Index](https://pypi.org/project/llms-from-scratch/) (PyPI):
+&nbsp;
+### PyPIから
+
+公式の[Python Package Index](https://pypi.org/project/llms-from-scratch/) (PyPI)から`llms-from-scratch`パッケージをインストールします：
 
 ```bash
 pip install llms-from-scratch
 ```
 
-> **Note:** If you're using [`uv`](https://github.com/astral-sh/uv), replace `pip` with `uv pip` or use `uv add`:
+> **注意:** [`uv`](https://github.com/astral-sh/uv)を使用している場合は、`pip`を`uv pip`に置き換えるか、`uv add`を使用してください：
 
 ```bash
 uv add llms-from-scratch
@@ -23,9 +23,9 @@ uv add llms-from-scratch
 
 
 &nbsp;
-### Editable Install from GitHub
+### GitHubからの編集可能インストール
 
-If you'd like to modify the code and have those changes reflected during development:
+コードを変更して、開発中にその変更を反映させたい場合：
 
 ```bash
 git clone https://github.com/rasbt/LLMs-from-scratch.git
@@ -33,7 +33,7 @@ cd LLMs-from-scratch
 pip install -e .
 ```
 
-> **Note:** With `uv`, use:
+> **注意:** `uv`の場合は以下を使用してください：
 
 ```bash
 uv add --editable . --dev
@@ -42,9 +42,9 @@ uv add --editable . --dev
 
 
 &nbsp;
-## Using the Package
+## パッケージの使用
 
-Once installed, you can import code from any chapter using:
+インストール後、次のようにして任意の章からコードをインポートできます：
 
 ```python
 from llms_from_scratch.ch02 import GPTDatasetV1, create_dataloader_v1
@@ -55,7 +55,7 @@ from llms_from_scratch.ch03 import (
     CausalAttention,
     MultiHeadAttentionWrapper,
     MultiHeadAttention,
-    PyTorchMultiHeadAttention # Bonus: Faster variant using PyTorch's scaled_dot_product_attention
+    PyTorchMultiHeadAttention # ボーナス: PyTorchのscaled_dot_product_attentionを使用した高速版
 )
 
 from llms_from_scratch.ch04 import (
@@ -64,7 +64,7 @@ from llms_from_scratch.ch04 import (
     FeedForward,
     TransformerBlock,
     GPTModel,
-    GPTModelFast # Bonus: Faster variant using PyTorch's scaled_dot_product_attention
+    GPTModelFast # ボーナス: PyTorchのscaled_dot_product_attentionを使用した高速版
     generate_text_simple
 )
 
@@ -115,20 +115,20 @@ from llms_from_scratch.appendix_d import find_highest_gradient, train_model
 
 &nbsp;
 
-### GPT-2 KV cache variant (Bonus material)
+### GPT-2 KVキャッシュ版（ボーナス素材）
 
 ```python
 from llms_from_scratch.kv_cache.gpt2 import GPTModel
 from llms_from_scratch.kv_cache.generate import generate_text_simple
 ```
 
-For more information about KV caching, please see the [KV cache README](../../ch04/03_kv-cache).
+KVキャッシュの詳細については、[KVキャッシュREADME](../../ch04/03_kv-cache)をご覧ください。
 
 
 
 &nbsp;
 
-### Llama  3 (Bonus material)
+### Llama 3（ボーナス素材）
 
 ```python
 from llms_from_scratch.llama3 import (
@@ -139,18 +139,18 @@ from llms_from_scratch.llama3 import (
     clean_text
 )
 
-# KV cache drop-in replacements
+# KVキャッシュのドロップイン置換
 from llms_from_scratch.kv_cache.llama3 import Llama3Model
 from llms_from_scratch.kv_cache.generate import generate_text_simple
 ```
 
-For the `llms_from_scratch.llama3` usage information, please see [this bonus section](../../ch05/07_gpt_to_llama/README.md). 
+`llms_from_scratch.llama3`の使用方法については、[このボーナスセクション](../../ch05/07_gpt_to_llama/README.md)をご覧ください。
 
-For more information about KV caching, please see the [KV cache README](../../ch04/03_kv-cache).
+KVキャッシュの詳細については、[KVキャッシュREADME](../../ch04/03_kv-cache)をご覧ください。
 
 
 &nbsp;
-### Qwen3 (Bonus material)
+### Qwen3（ボーナス素材）
 
 ```python
 from llms_from_scratch.qwen3 import (
@@ -158,14 +158,14 @@ from llms_from_scratch.qwen3 import (
     Qwen3Tokenizer,
 )
 
-# KV cache drop-in replacements
+# KVキャッシュのドロップイン置換
 from llms_from_scratch.kv_cache.qwen3 import Qwen3Model
 from llms_from_scratch.kv_cache.generate import (
     generate_text_simple,
     generate_text_simple_stream
 )
 
-# KV cache drop-in replacements with batched inference support
+# バッチ推論サポート付きKVキャッシュのドロップイン置換
 from llms_from_scratch.kv_cache_batched.generate import (
     generate_text_simple,
     generate_text_simple_stream
@@ -173,6 +173,6 @@ from llms_from_scratch.kv_cache_batched.generate import (
 from llms_from_scratch.kv_cache_batched.qwen3 import Qwen3Model
 ```
 
-For the `llms_from_scratch.qwen3` usage information, please see [this bonus section](../../ch05/11_qwen3/README.md).
+`llms_from_scratch.qwen3`の使用方法については、[このボーナスセクション](../../ch05/11_qwen3/README.md)をご覧ください。
 
-For more information about KV caching, please see the [KV cache README](../../ch04/03_kv-cache).
+KVキャッシュの詳細については、[KVキャッシュREADME](../../ch04/03_kv-cache)をご覧ください。

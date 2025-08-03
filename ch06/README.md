@@ -1,16 +1,16 @@
-# Chapter 6: Finetuning for Classification
+# 第6章: 分類のためのファインチューニング
 
 &nbsp;
-## Main Chapter Code
+## メインチャプターコード
 
-- [01_main-chapter-code](01_main-chapter-code) contains the main chapter code
+- [01_main-chapter-code](01_main-chapter-code) メインチャプターコードを含む
 
 &nbsp;
-## Bonus Materials
+## ボーナス教材
 
-- [02_bonus_additional-experiments](02_bonus_additional-experiments) includes additional experiments (e.g., training the last vs first token, extending the input length, etc.)
-- [03_bonus_imdb-classification](03_bonus_imdb-classification) compares the LLM from chapter 6 with other models on a 50k IMDB movie review sentiment classification dataset
-- [04_user_interface](04_user_interface) implements an interactive user interface to interact with the pretrained LLM
+- [02_bonus_additional-experiments](02_bonus_additional-experiments) 追加実験を含む（例：最後のトークンvs最初のトークンのトレーニング、入力長の拡張など）
+- [03_bonus_imdb-classification](03_bonus_imdb-classification) 第6章のLLMを50k IMDBムービーレビュー感情分類データセットで他のモデルと比較する
+- [04_user_interface](04_user_interface) 事前学習済みLLMとやり取りするためのインタラクティブなユーザーインターフェースを実装する
 
 
 

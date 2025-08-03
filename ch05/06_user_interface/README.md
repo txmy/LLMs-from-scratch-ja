@@ -1,48 +1,42 @@
-# Building a User Interface to Interact With the Pretrained LLM
+# 事前学習済みLLMと対話するユーザーインターフェースの構築
 
-
-
-This bonus folder contains code for running a ChatGPT-like user interface to interact with the pretrained LLMs from chapter 5, as shown below.
-
-
+このボーナスフォルダには、以下に示すように、第5章の事前学習済みLLMと対話するためのChatGPTライクなユーザーインターフェースを実行するためのコードが含まれています。
 
 ![Chainlit UI example](https://sebastianraschka.com/images/LLMs-from-scratch-images/bonus/chainlit/chainlit-orig.webp)
 
-
-
-To implement this user interface, we use the open-source [Chainlit Python package](https://github.com/Chainlit/chainlit).
+このユーザーインターフェースを実装するために、オープンソースの[Chainlit Pythonパッケージ](https://github.com/Chainlit/chainlit)を使用します。
 
 &nbsp;
-## Step 1: Install dependencies
+## ステップ1：依存関係のインストール
 
-First, we install the `chainlit` package via
+まず、以下のコマンドで`chainlit`パッケージをインストールします：
 
 ```bash
 pip install chainlit
 ```
 
-(Alternatively, execute `pip install -r requirements-extra.txt`.)
+（または、`pip install -r requirements-extra.txt`を実行してください。）
 
 &nbsp;
-## Step 2: Run `app` code
+## ステップ2：`app`コードの実行
 
-This folder contains 2 files:
+このフォルダには2つのファイルが含まれています：
 
-1. [`app_orig.py`](app_orig.py): This file loads and uses the original GPT-2 weights from OpenAI. 
-2. [`app_own.py`](app_own.py): This file loads and uses the GPT-2 weights we generated in chapter 5. This requires that you execute the [`../01_main-chapter-code/ch05.ipynb`](../01_main-chapter-code/ch05.ipynb) file first.
+1. [`app_orig.py`](app_orig.py): このファイルはOpenAIの元のGPT-2重みを読み込んで使用します。
+2. [`app_own.py`](app_own.py): このファイルは第5章で生成したGPT-2重みを読み込んで使用します。これには最初に[`../01_main-chapter-code/ch05.ipynb`](../01_main-chapter-code/ch05.ipynb)ファイルを実行する必要があります。
 
-(Open and inspect these files to learn more.)
+（詳細を学ぶためにこれらのファイルを開いて調べてください。）
 
-Run one of the following commands from the terminal to start the UI server:
+UIサーバーを開始するために、ターミナルから以下のコマンドのいずれかを実行してください：
 
 ```bash
 chainlit run app_orig.py
 ```
 
-or
+または
 
 ```bash
 chainlit run app_own.py
 ```
 
-Running one of the commands above should open a new browser tab where you can interact with the model. If the browser tab does not open automatically, inspect the terminal command and copy the local address into your browser address bar (usually, the address is `http://localhost:8000`).
+上記のコマンドのいずれかを実行すると、モデルと対話できる新しいブラウザタブが開くはずです。ブラウザタブが自動的に開かない場合は、ターミナルコマンドを調べて、ローカルアドレスをブラウザのアドレスバーにコピーしてください（通常、アドレスは`http://localhost:8000`です）。

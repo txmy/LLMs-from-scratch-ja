@@ -1,7 +1,6 @@
-# Chapter 2: Working with Text Data
+# 第2章: テキストデータを扱う
 
 
 
-- [compare-bpe-tiktoken.ipynb](compare-bpe-tiktoken.ipynb) benchmarks various byte pair encoding implementations
-- [bpe_openai_gpt2.py](bpe_openai_gpt2.py) is the original bytepair encoder code used by OpenAI
-
+- [compare-bpe-tiktoken.ipynb](compare-bpe-tiktoken.ipynb) さまざまなバイトペアエンコーディング実装をベンチマーク
+- [bpe_openai_gpt2.py](bpe_openai_gpt2.py) OpenAIが使用したオリジナルのバイトペアエンコーダコード

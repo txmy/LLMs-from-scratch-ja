@@ -1,31 +1,31 @@
-# AWS CloudFormation Template: Jupyter Notebook with LLMs-from-scratch Repo
+# AWS CloudFormationテンプレート：LLMs-from-scratchリポジトリを含むJupyterノートブック
 
-This CloudFormation template creates a GPU-enabled Jupyter notebook in Amazon SageMaker with an execution role and the LLMs-from-scratch GitHub repository.
+このCloudFormationテンプレートは、Amazon SageMakerでGPU対応のJupyterノートブックを作成し、実行ロールとLLMs-from-scratch GitHubリポジトリを設定します。
 
-## What it does:
+## 機能：
 
-1. Creates an IAM role with the necessary permissions for the SageMaker notebook instance.
-2. Creates a KMS key and an alias for encrypting the notebook instance.
-3. Configures a notebook instance lifecycle configuration script that:
-   - Installs a separate Miniconda installation in the user's home directory.
-   - Creates a custom Python environment with TensorFlow 2.15.0 and PyTorch 2.1.0, both with CUDA support.
-   - Installs additional packages like Jupyter Lab, Matplotlib, and other useful libraries.
-   - Registers the custom environment as a Jupyter kernel.
-4. Creates the SageMaker notebook instance with the specified configuration, including the GPU-enabled instance type, the execution role, and the default code repository.
+1. SageMakerノートブックインスタンスに必要な権限を持つIAMロールを作成します。
+2. ノートブックインスタンスを暗号化するためのKMSキーとエイリアスを作成します。
+3. ノートブックインスタンスのライフサイクル設定スクリプトを構成します：
+   - ユーザーのホームディレクトリに別のMinicondaインストールをインストールします。
+   - CUDAサポート付きのTensorFlow 2.15.0とPyTorch 2.1.0を含むカスタムPython環境を作成します。
+   - Jupyter Lab、Matplotlib、その他の有用なライブラリなどの追加パッケージをインストールします。
+   - カスタム環境をJupyterカーネルとして登録します。
+4. 指定された構成（GPU対応インスタンスタイプ、実行ロール、デフォルトコードリポジトリを含む）でSageMakerノートブックインスタンスを作成します。
 
-## How to use:
+## 使用方法：
 
-1. Download the CloudFormation template file (`cloudformation-template.yml`).
-2. In the AWS Management Console, navigate to the CloudFormation service.
-3. Create a new stack and upload the template file.
-4. Provide a name for the notebook instance (e.g., "LLMsFromScratchNotebook") (defaults to the LLMs-from-scratch GitHub repo).
-5. Review and accept the template's parameters, then create the stack.
-6. Once the stack creation is complete, the SageMaker notebook instance will be available in the SageMaker console.
-7. Open the notebook instance and start using the pre-configured environment to work on your LLMs-from-scratch projects.
+1. CloudFormationテンプレートファイル（`cloudformation-template.yml`）をダウンロードします。
+2. AWSマネジメントコンソールで、CloudFormationサービスに移動します。
+3. 新しいスタックを作成し、テンプレートファイルをアップロードします。
+4. ノートブックインスタンスの名前を指定します（例：「LLMsFromScratchNotebook」）（デフォルトはLLMs-from-scratch GitHubリポジトリ）。
+5. テンプレートのパラメータを確認して承認し、スタックを作成します。
+6. スタックの作成が完了すると、SageMakerノートブックインスタンスがSageMakerコンソールで利用可能になります。
+7. ノートブックインスタンスを開き、事前設定された環境を使用してLLMs-from-scratchプロジェクトの作業を開始します。
 
-## Key Points:
+## 重要なポイント：
 
-- The template creates a GPU-enabled (`ml.g4dn.xlarge`) notebook instance with 50GB of storage.
-- It sets up a custom Miniconda environment with TensorFlow 2.15.0 and PyTorch 2.1.0, both with CUDA support.
-- The custom environment is registered as a Jupyter kernel, making it available for use in the notebook.
-- The template also creates a KMS key for encrypting the notebook instance and an IAM role with the necessary permissions.
+- テンプレートは50GBのストレージを持つGPU対応（`ml.g4dn.xlarge`）ノートブックインスタンスを作成します。
+- CUDAサポート付きのTensorFlow 2.15.0とPyTorch 2.1.0を含むカスタムMiniconda環境をセットアップします。
+- カスタム環境はJupyterカーネルとして登録され、ノートブックで使用できるようになります。
+- テンプレートは、ノートブックインスタンスを暗号化するためのKMSキーと必要な権限を持つIAMロールも作成します。

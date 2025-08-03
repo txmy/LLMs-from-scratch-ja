@@ -1,77 +1,77 @@
-# Additional Classification Finetuning Experiments
+# 追加の分類ファインチューニング実験
 
-The table below adds experiments to answer additional questions about various design choices. The first row uses the same settings as the main chapter and is used as a reference.
-For example,
+以下の表は、様々な設計選択に関する追加の質問に答えるための実験を追加したものです。最初の行はメインチャプターと同じ設定を使用しており、参照として使用されます。
+例えば、
 
-- comparing rows 1 and 2 answers the question: "What is the performance difference when we train the last or first token?";
-- comparing rows 1 and 3 answers the question: "What is the performance difference when we train only the last layer instead of the last block?";
-- and so forth.
-
-&nbsp;
-
-|      | Model              | Weights    | Trainable token position | Trainable layers | Context length                                         | Training acc | Validation acc | Test acc | Training time | CPU/GPU |
-| ---- | ------------------ | ---------- | ------------------------ | ---------------- | ------------------------------------------------------ | ------------ | -------------- | -------- | ------------- | ------- |
-| 1    | gpt2-small (124M)  | pretrained | last                     | last_block       | longest train ex. (120)                                | 96.63%       | 99.33%         | 95.00%   | 0.28 min      | A100    |
-| 2    | gpt2-small (124M)  | pretrained | first                    | last_block       | longest train ex. (120)                                | 78.46%       | 80.54%         | 75.00%   | 0.28 min      | A100    |
-| 3    | gpt2-small (124M)  | pretrained | last                     | last_layer       | longest train ex. (120)                                | 78.65%       | 79.87%         | 72.00%   | 0.25 min      | A100    |
-| 4    | gpt2-small (124M)  | pretrained | last                     | last_two_blocks  | longest train ex. (120)                                | 98.85%       | 98.66%         | 98.33%   | 0.33 min      | A100    |
-| 5    | gpt2-small (124M)  | pretrained | last                     | all              | longest train ex. (120)                                | 99.62%       | 96.64%         | 96.67%   | 0.69 min      | A100    |
-| 6    | gpt2-medium (355M) | pretrained | last                     | last_block       | longest train ex. (120)                                | 87.50%       | 91.28%         | 84.67%   | 0.75 min      | A100    |
-| 7    | gpt2-large (774M)  | pretrained | last                     | last_block       | longest train ex. (120)                                | 99.52%       | 98.66%         | 96.67%   | 1.50 min      | A100    |
-| 8    | gpt2-xl (1558M)    | pretrained | last                     | last_block       | longest train ex. (120)                                | 99.81%       | 99.81%         | 98.33%   | 2.83 min      | A100    |
-| 9    | gpt2-xl (1558M)    | pretrained | last                     | all              | longest train ex. (120)                                | 100.00%      | 98.66%         | 98.67%   | 8.12 min      | A100    |
-| 10   | gpt2-small (124M)  | random     | last                     | all              | longest train ex. (120)                                | 100.00%      | 96.64%         | 93.67%   | 0.69 min      | A100    |
-| 11   | gpt2-small (124M)  | pretrained | last                     | LoRA             | longest train ex. (120)                                | 100.00%      | 97.32%         | 96.67%   | 0.75 min      | A100    |
-| 12   | gpt2-xl (1558M)    | pretrained | last                     | LoRA             | longest train ex. (120)                                | 100.00%      | 98.66%         | 98.33%   | 5.79 min      | A100    |
-| 13   | gpt2-small (124M)  | pretrained | last                     | last_block       | context length (1024)                                  | 83.08%       | 87.92%         | 78.33%   | 2.46 min      | A100    |
-| 14   | gpt2-small (124M)  | pretrained | last                     | last_block       | variable: no padding (batch size 1)                    | 100.00%      | 98.66%         | 98.00%   | 1.75 min      | A100    |
-| 15   | gpt2-small (124M)  | pretrained | last                     | last_block       | variable: no padding (batch size 8)                    | 99.33%       | 98.66%         | 98.33%   | 1.70 min      | A100    |
-| 16   | gpt2-small (124M)  | pretrained | last                     | last_block       | flexible (last non-padding position)                   | 99.42%       | 98.66%         | 98.33%   | 0.30 min      | A100    |
-| 17   | gpt2-small (124M)  | pretrained | last                     | last_block       | longest train ex. (120); but no causal mask            | 99.23%       | 98.66%         | 95.33%   | 0.29 min      | A100    |
-| 18   | gpt2-small (124M)  | pretrained | last                     | last_block       | longest train ex. (120) and `ignore_index` for padding | 96.63%       | 99.33%         | 95.00%   | 0.28 min      | A100    |
-| 19   | gpt2-small (124M)  | pretrained | last + pooled embeddings | last_block       | longest train ex. (120)                                | 97.79%       | 99.33%         | 96.33%   | 0.32 min      | A100    |
+- 行1と2を比較すると「最後のトークンか最初のトークンを学習する場合の性能差は何か？」という質問に答えます；
+- 行1と3を比較すると「最後のブロックではなく最後のレイヤーのみを学習する場合の性能差は何か？」という質問に答えます；
+- その他も同様です。
 
 &nbsp;
 
-### Usage
-
-You can use the following code to reproduce the experiments:
-
-- Row 1: `python additional_experiments.py`
-- Row 2: `python additional_experiments.py --trainable_token_pos first`
-- Row 3: `python additional_experiments.py --trainable_layers last_layer`
-- Row 4: `python additional_experiments.py --trainable_layers last_two_blocks`
-- Row 5: `python additional_experiments.py --trainable_layers all`
-- Row 6: `python additional_experiments.py --model_size "gpt2-medium (355M)"`
-- Row 7: `python additional_experiments.py --model_size "gpt2-large (774M)"`
-- Row 8: `python additional_experiments.py --model_size "gpt2-xl (1558M)"`
-- Row 9: `python additional_experiments.py --model_size "gpt2-xl (1558M)"--trainable_layers all`
-- Row 10: `python additional_experiments.py --weights random --trainable_layers all`
-- Row 11: `python additional_experiments.py --trainable_layers lora --lora_rank 16 --lora_alpha 16`
-- Row 12: `python additional_experiments.py --trainable_layers lora --lora_rank 16 --lora_alpha 8 --model_size "gpt2-xl (1558M)"`
-- Row 13: `python additional_experiments.py --context_length "model_context_length"`
-- Row 14: `python additional_experiments.py --no_padding --batch_size 1`
-- Row 15: `python additional_experiments.py --no_padding --batch_size 1 --accumulation_steps 8`
-- Row 16: `python additional_experiments.py --trainable_token_pos "flexible"`
-- Row 17: `python additional_experiments.py --disable_causal_mask`
-- Row 18: `python additional_experiments.py --ignore_index 50256`
-- Row 19: `python additional_experiments.py --average_embeddings`
-
-I've kept the LLM and dataset small on purpose, so you can run the training on a regular laptop like a MacBook Air M3 in about 15 minutes (for the default setting) in case you don't have access to a GPU.
+|      | モデル             | 重み       | 学習可能トークン位置 | 学習可能レイヤー | コンテキスト長                                         | 訓練精度     | 検証精度       | テスト精度 | 訓練時間      | CPU/GPU |
+| ---- | ------------------ | ---------- | -------------------- | ---------------- | ------------------------------------------------------ | ------------ | -------------- | ---------- | ------------- | ------- |
+| 1    | gpt2-small (124M)  | 事前学習済み | last                 | last_block       | 最長訓練例 (120)                                      | 96.63%       | 99.33%         | 95.00%     | 0.28 min      | A100    |
+| 2    | gpt2-small (124M)  | 事前学習済み | first                | last_block       | 最長訓練例 (120)                                      | 78.46%       | 80.54%         | 75.00%     | 0.28 min      | A100    |
+| 3    | gpt2-small (124M)  | 事前学習済み | last                 | last_layer       | 最長訓練例 (120)                                      | 78.65%       | 79.87%         | 72.00%     | 0.25 min      | A100    |
+| 4    | gpt2-small (124M)  | 事前学習済み | last                 | last_two_blocks  | 最長訓練例 (120)                                      | 98.85%       | 98.66%         | 98.33%     | 0.33 min      | A100    |
+| 5    | gpt2-small (124M)  | 事前学習済み | last                 | all              | 最長訓練例 (120)                                      | 99.62%       | 96.64%         | 96.67%     | 0.69 min      | A100    |
+| 6    | gpt2-medium (355M) | 事前学習済み | last                 | last_block       | 最長訓練例 (120)                                      | 87.50%       | 91.28%         | 84.67%     | 0.75 min      | A100    |
+| 7    | gpt2-large (774M)  | 事前学習済み | last                 | last_block       | 最長訓練例 (120)                                      | 99.52%       | 98.66%         | 96.67%     | 1.50 min      | A100    |
+| 8    | gpt2-xl (1558M)    | 事前学習済み | last                 | last_block       | 最長訓練例 (120)                                      | 99.81%       | 99.81%         | 98.33%     | 2.83 min      | A100    |
+| 9    | gpt2-xl (1558M)    | 事前学習済み | last                 | all              | 最長訓練例 (120)                                      | 100.00%      | 98.66%         | 98.67%     | 8.12 min      | A100    |
+| 10   | gpt2-small (124M)  | ランダム   | last                 | all              | 最長訓練例 (120)                                      | 100.00%      | 96.64%         | 93.67%     | 0.69 min      | A100    |
+| 11   | gpt2-small (124M)  | 事前学習済み | last                 | LoRA             | 最長訓練例 (120)                                      | 100.00%      | 97.32%         | 96.67%     | 0.75 min      | A100    |
+| 12   | gpt2-xl (1558M)    | 事前学習済み | last                 | LoRA             | 最長訓練例 (120)                                      | 100.00%      | 98.66%         | 98.33%     | 5.79 min      | A100    |
+| 13   | gpt2-small (124M)  | 事前学習済み | last                 | last_block       | コンテキスト長 (1024)                                 | 83.08%       | 87.92%         | 78.33%     | 2.46 min      | A100    |
+| 14   | gpt2-small (124M)  | 事前学習済み | last                 | last_block       | 可変: パディングなし (バッチサイズ 1)                 | 100.00%      | 98.66%         | 98.00%     | 1.75 min      | A100    |
+| 15   | gpt2-small (124M)  | 事前学習済み | last                 | last_block       | 可変: パディングなし (バッチサイズ 8)                 | 99.33%       | 98.66%         | 98.33%     | 1.70 min      | A100    |
+| 16   | gpt2-small (124M)  | 事前学習済み | last                 | last_block       | 柔軟 (最後の非パディング位置)                         | 99.42%       | 98.66%         | 98.33%     | 0.30 min      | A100    |
+| 17   | gpt2-small (124M)  | 事前学習済み | last                 | last_block       | 最長訓練例 (120); ただし因果マスクなし                | 99.23%       | 98.66%         | 95.33%     | 0.29 min      | A100    |
+| 18   | gpt2-small (124M)  | 事前学習済み | last                 | last_block       | 最長訓練例 (120) とパディング用`ignore_index`        | 96.63%       | 99.33%         | 95.00%     | 0.28 min      | A100    |
+| 19   | gpt2-small (124M)  | 事前学習済み | last + プール埋め込み | last_block       | 最長訓練例 (120)                                      | 97.79%       | 99.33%         | 96.33%     | 0.32 min      | A100    |
 
 &nbsp;
 
-### Interpretation
+### 使用方法
 
-1. **Training the Last vs. First Output Token Position (Row 1 vs. 2)**: Training the last output token position results in substantially better performance compared to the first. This improvement is expected due to the causal self-attention mask.
-2. **Training the Last Transformer Block vs. Last Layer (Row 1 vs. 3)**: Training the entire last transformer block is also results in substantially better results than training only the last layer.
-3. **Training the Last vs. Last Two Last Transformer Blocks (Row 1 vs. 4)**: Training the two last transformer blocks instead of only the last block results in a noticeable 3.33% accuracy boost.
-4. **Training Last Transformer Block vs All Layers (Row 1 vs. 5)**: Training all layers shows a modest improvement of ~2% over just training the last transformer block, but it requires almost three times longer in terms of training duration. Also, it does not perform as well as training only the last two out of 12 transformer blocks.
-5. **Using Larger Pretrained Models (Row 1 vs 6, and Row 1 vs. 7 and 8)**: Employing a 3x larger pretrained model leads to worse results. However, using a 5x larger model improves performance compared to the initial model, as was anticipated. Similarly, the 12x larger model improves the predictive performance even further. (The medium model was perhaps not well pretrained or the particular finetuning configuration works not as well for this model.)
-6. **Using a Model with Random Weights vs. Pretrained Weights (Row 1 and 5 vs. 10)**: Utilizing a model with random weights yields results that are only slightly worse (by 3% and 1.3%) compared to using pretrained weights.
-7. **Using LoRA (Low-Rank Adaptation) vs Training All Layers (Row 11 vs. 5, and row 12 vs. 9)**: Keeping the model frozen and adding trainable LoRA layers (see [Appendix E](../../appendix-E/01_main-chapter-code/appendix-E.ipynb) for details) is a viable alternative to training all model parameters and even improves the performance by 1% point (row 11 vs. 5). As it can be seen by the ~1% lower gap between the training and validation accuracy when using LoRA, this is likely due to less overfitting. Moreover, using LoRA is also more memory-efficient because fewer parameters have to be updated. When training the larger model (row 12 vs. 9), we can also see that LoRA trains much faster (5.79 min instead of 8.12 min).
-8. **Padding Input to Full Context Length vs. Longest Training Example (Row 1 vs. 13)**: Padding the input to the full supported context length results is significantly worse.
-9. **Padding vs no padding (Row 1 vs. 14 & 15, and 16)**: The `--no_padding` option disables the padding in the dataset, which requires training the model with a batch size of 1 since the inputs have variable lengths. This results in a better test accuracy but takes longer to train. In row 15, we additionally enable gradient accumulation with 8 steps to achieve the same batch size as in the other experiments, which helps reduce overfitting and slightly boost the test set accuracy. In row 16, padding is applied, but the token position is selected based on the last non-padding token. Row 16 should be mathematically similar to row 15, which uses gradient accumulation. However, due to some challenges with gradient accumulation in cases of unequal token counts, there may be small discrepancies (this is discussed in [this](https://unsloth.ai/blog/gradient) blog post).
-10. **Disabling the causal attention mask (Row 1 vs. 17)**: Disables the causal attention mask used in the multi-head attention module. This means all tokens can attend all other tokens. The model accuracy is slightly improved compared to the GPT model with causal mask.
-11. **Ignoring the padding indices in the loss and backpropagation (Row 1 vs. 18)**: Setting `--ignore_index 50256` excludes the `<|endoftext|>` padding tokens in the `cross_entropy` loss function in PyTorch. In this case, it does not have any effect because we replaced the output layers so that the token IDs are either 0 or 1 for the binary classification example. However, this setting is useful when instruction finetuning models in chapter 7.
-12. **Averaging the embeddings over all tokens (Row 1 vs. 19)**: Setting `--average_embeddings` will average the embeddings over all tokens. If this option is not used (the default), only the output embeddings at the chosen token position (specified by `--trainable_token_pos`) are considered; for example, the embeddings of the last token. Enabling `--average_embeddings` will mean-pool the embeddings of all tokens into the position chosen by `--trainable_token_pos` (the last token by default). As we can see, this improves the performance from 95.00% to 96.33% with only a minimal increase in run time (0.28 min to 0.32 min) and might be worthwhile considering in practice.
+以下のコードを使用して実験を再現できます：
+
+- 行1: `python additional_experiments.py`
+- 行2: `python additional_experiments.py --trainable_token_pos first`
+- 行3: `python additional_experiments.py --trainable_layers last_layer`
+- 行4: `python additional_experiments.py --trainable_layers last_two_blocks`
+- 行5: `python additional_experiments.py --trainable_layers all`
+- 行6: `python additional_experiments.py --model_size "gpt2-medium (355M)"`
+- 行7: `python additional_experiments.py --model_size "gpt2-large (774M)"`
+- 行8: `python additional_experiments.py --model_size "gpt2-xl (1558M)"`
+- 行9: `python additional_experiments.py --model_size "gpt2-xl (1558M)"--trainable_layers all`
+- 行10: `python additional_experiments.py --weights random --trainable_layers all`
+- 行11: `python additional_experiments.py --trainable_layers lora --lora_rank 16 --lora_alpha 16`
+- 行12: `python additional_experiments.py --trainable_layers lora --lora_rank 16 --lora_alpha 8 --model_size "gpt2-xl (1558M)"`
+- 行13: `python additional_experiments.py --context_length "model_context_length"`
+- 行14: `python additional_experiments.py --no_padding --batch_size 1`
+- 行15: `python additional_experiments.py --no_padding --batch_size 1 --accumulation_steps 8`
+- 行16: `python additional_experiments.py --trainable_token_pos "flexible"`
+- 行17: `python additional_experiments.py --disable_causal_mask`
+- 行18: `python additional_experiments.py --ignore_index 50256`
+- 行19: `python additional_experiments.py --average_embeddings`
+
+LLMとデータセットを意図的に小さく保っているため、GPUにアクセスできない場合でも、MacBook Air M3のような通常のラップトップで約15分（デフォルト設定の場合）で訓練を実行できます。
+
+&nbsp;
+
+### 解釈
+
+1. **最後と最初の出力トークン位置の学習（行1 vs 2）**: 最後の出力トークン位置を学習することで、最初の位置と比較して大幅に良い性能が得られます。この改善は因果自己注意マスクによるものです。
+2. **最後のTransformerブロックと最後のレイヤーの学習（行1 vs 3）**: 最後のTransformerブロック全体を学習することも、最後のレイヤーのみを学習するよりも大幅に良い結果をもたらします。
+3. **最後と最後の2つのTransformerブロックの学習（行1 vs 4）**: 最後のブロックのみではなく最後の2つのTransformerブロックを学習することで、目立つ3.33%の精度向上が得られます。
+4. **最後のTransformerブロックと全レイヤーの学習（行1 vs 5）**: 全レイヤーを学習することで、最後のTransformerブロックのみの学習と比較して約2%の控えめな改善が見られますが、訓練時間は約3倍長くなります。また、12個のTransformerブロックのうち最後の2つのみを学習する場合と比較すると性能が劣ります。
+5. **より大きな事前学習済みモデルの使用（行1 vs 6、および行1 vs 7と8）**: 3倍大きな事前学習済みモデルを使用すると結果が悪くなります。しかし、5倍大きなモデルを使用すると予想通り初期モデルと比較して性能が向上します。同様に、12倍大きなモデルは予測性能をさらに向上させます。（mediumモデルは事前学習が十分でないか、特定のファインチューニング設定がこのモデルでうまく機能しない可能性があります。）
+6. **ランダム重みと事前学習済み重みを持つモデルの使用（行1と5 vs 10）**: ランダム重みを持つモデルを使用すると、事前学習済み重みを使用する場合と比較してわずかに悪い結果（3%と1.3%）が得られます。
+7. **LoRA（Low-Rank Adaptation）と全レイヤー学習の使用（行11 vs 5、および行12 vs 9）**: モデルを凍結し、学習可能なLoRAレイヤーを追加する（詳細は[付録E](../../appendix-E/01_main-chapter-code/appendix-E.ipynb)を参照）ことは、全モデルパラメータを学習する実行可能な代替手段であり、1%ポイント（行11 vs 5）性能を向上させます。LoRAを使用する際の訓練精度と検証精度の差が約1%小さいことから、これは過学習の軽減によるものと考えられます。さらに、LoRAは更新する必要のあるパラメータが少ないため、よりメモリ効率的です。より大きなモデルを学習する場合（行12 vs 9）、LoRAの方がはるかに高速に学習できることもわかります（8.12分ではなく5.79分）。
+8. **最長訓練例と完全コンテキスト長へのパディング（行1 vs 13）**: 完全サポートコンテキスト長への入力パディングは大幅に悪い結果となります。
+9. **パディングありとパディングなし（行1 vs 14と15、および16）**: `--no_padding`オプションはデータセットのパディングを無効にし、入力が可変長のためバッチサイズ1でモデルを学習する必要があります。これによりテスト精度は向上しますが、学習時間が長くなります。行15では、他の実験と同じバッチサイズを達成するために8ステップの勾配蓄積を追加で有効にし、過学習を軽減してテストセット精度をわずかに向上させます。行16では、パディングが適用されますが、トークン位置は最後の非パディングトークンに基づいて選択されます。行16は数学的には勾配蓄積を使用する行15と類似しているはずです。しかし、不等なトークン数の場合の勾配蓄積に関するいくつかの課題により、小さな差異がある可能性があります（これは[この](https://unsloth.ai/blog/gradient)ブログ記事で議論されています）。
+10. **因果注意マスクの無効化（行1 vs 17）**: マルチヘッド注意モジュールで使用される因果注意マスクを無効化します。これにより、すべてのトークンが他のすべてのトークンに注意を向けることができます。モデル精度は因果マスクを持つGPTモデルと比較してわずかに改善されます。
+11. **損失と逆伝播でのパディングインデックスの無視（行1 vs 18）**: `--ignore_index 50256`を設定すると、PyTorchの`cross_entropy`損失関数で`<|endoftext|>`パディングトークンが除外されます。この場合、二項分類例ではトークンIDが0または1になるように出力レイヤーを置き換えたため、効果はありません。しかし、この設定は第7章でモデルの指示ファインチューニングを行う際に有用です。
+12. **全トークンでの埋め込み平均化（行1 vs 19）**: `--average_embeddings`を設定すると、すべてのトークンで埋め込みが平均化されます。このオプションを使用しない場合（デフォルト）、選択されたトークン位置（`--trainable_token_pos`で指定）の出力埋め込みのみが考慮されます；例えば、最後のトークンの埋め込み。`--average_embeddings`を有効にすると、すべてのトークンの埋め込みが`--trainable_token_pos`で選択された位置（デフォルトでは最後のトークン）に平均プールされます。見ての通り、これにより性能が95.00%から96.33%に向上し、実行時間の増加は最小限（0.28分から0.32分）であり、実際には検討する価値があるかもしれません。

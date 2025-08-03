@@ -1,20 +1,20 @@
-# Chapter 7: Finetuning to Follow Instructions
+# 第7章：指示に従うためのファインチューニング
 
-### Main Chapter Code
+### メインチャプターコード
 
-- [ch07.ipynb](ch07.ipynb) contains all the code as it appears in the chapter
-- [previous_chapters.py](previous_chapters.py) is a Python module that contains the GPT model we coded and trained in previous chapters, alongside many utility functions, which we reuse in this chapter
-- [gpt_download.py](gpt_download.py) contains the utility functions for downloading the pretrained GPT model weights
-- [exercise-solutions.ipynb](exercise-solutions.ipynb) contains the exercise solutions for this chapter
+- [ch07.ipynb](ch07.ipynb) には、章に登場するすべてのコードが含まれています
+- [previous_chapters.py](previous_chapters.py) は、前章でコーディングして訓練したGPTモデルと多くのユーティリティ関数を含むPythonモジュールで、この章で再利用します
+- [gpt_download.py](gpt_download.py) には、事前訓練されたGPTモデルの重みをダウンロードするためのユーティリティ関数が含まれています
+- [exercise-solutions.ipynb](exercise-solutions.ipynb) には、この章の演習解答が含まれています
 
 
-### Optional Code
+### オプションコード
 
-- [load-finetuned-model.ipynb](load-finetuned-model.ipynb) is a standalone Jupyter notebook to load the instruction finetuned model we created in this chapter
+- [load-finetuned-model.ipynb](load-finetuned-model.ipynb) は、この章で作成した指示ファインチューニングモデルを読み込むための独立したJupyterノートブックです
 
-- [gpt_instruction_finetuning.py](gpt_instruction_finetuning.py) is a standalone Python script to instruction finetune the model as described in the main chapter (think of it as a chapter summary focused on the finetuning parts)
+- [gpt_instruction_finetuning.py](gpt_instruction_finetuning.py) は、メイン章で説明されているように指示ファインチューニングモデルを訓練するための独立したPythonスクリプトです（ファインチューニング部分に焦点を当てた章の要約と考えてください）
 
-Usage:
+使用方法:
 
 ```bash
 python gpt_instruction_finetuning.py
@@ -58,9 +58,9 @@ Responses saved as instruction-data-with-response-standalone.json
 Model saved as gpt2-medium355M-sft-standalone.pth
 ```
 
-- [ollama_evaluate.py](ollama_evaluate.py) is a standalone Python script to evaluate the responses of the finetuned model as described in the main chapter (think of it as a chapter summary focused on the evaluation parts)
+- [ollama_evaluate.py](ollama_evaluate.py) は、メイン章で説明されているようにファインチューニングモデルの応答を評価するための独立したPythonスクリプトです（評価部分に焦点を当てた章の要約と考えてください）
 
-Usage:
+使用方法:
 
 ```bash
 python ollama_evaluate.py --file_path instruction-data-with-response-standalone.json
@@ -73,4 +73,4 @@ Number of scores: 110 of 110
 Average score: 51.75
 ```
 
-- [exercise_experiments.py](exercise_experiments.py) is an optional scropt that implements the exercise solutions; for more details see [exercise-solutions.ipynb](exercise-solutions.ipynb)
+- [exercise_experiments.py](exercise_experiments.py) は、演習解答を実装するオプションのスクリプトです。詳細については[exercise-solutions.ipynb](exercise-solutions.ipynb)を参照してください

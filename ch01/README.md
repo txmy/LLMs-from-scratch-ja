@@ -1,16 +1,16 @@
-# Chapter 1: Understanding Large Language Models
+# 第1章: 大規模言語モデルを理解する
 
 
 &nbsp;
-## Main Chapter Code
+## メインチャプターコード
 
-There is no code in this chapter.
+この章にはコードはありません。
 
 
 &nbsp;
-## Bonus Materials
+## ボーナス教材
 
-In the video below, I share my personal approach to setting up a Python environment on my computer:
+以下のビデオでは、私がコンピュータにPython環境をセットアップする個人的なアプローチを共有しています：
 
 <br>
 <br>
@@ -20,10 +20,9 @@ In the video below, I share my personal approach to setting up a Python environm
 <br>
 <br>
 
-As an optional bonus, the following video tutorial provides an overview of the LLM development lifecycle covered in this book:
+オプションのボーナスとして、以下のビデオチュートリアルでは、本書で扱うLLM開発ライフサイクルの概要を提供しています：
 
 <br>
 <br>
 
 [![Link to the video](https://img.youtube.com/vi/kPGTx4wcm_w/0.jpg)](https://www.youtube.com/watch?v=kPGTx4wcm_w)
-

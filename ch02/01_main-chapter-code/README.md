@@ -1,9 +1,9 @@
-# Chapter 2: Working with Text Data
+# 第2章: テキストデータを扱う
 
-### Main Chapter Code
+### メインチャプターコード
 
-- [ch02.ipynb](ch02.ipynb) contains all the code as it appears in the chapter
+- [ch02.ipynb](ch02.ipynb) 章に記載されているすべてのコードを含む
 
-### Optional Code
+### オプションコード
 
-- [dataloader.ipynb](dataloader.ipynb) is a minimal notebook with the main data loading pipeline implemented in this chapter
+- [dataloader.ipynb](dataloader.ipynb) この章で実装されたメインデータローディングパイプラインを含む最小限のノートブック

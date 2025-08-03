@@ -1,8 +1,8 @@
-# Building a User Interface to Interact With the Instruction Finetuned GPT Model
+# 指示ファインチューニングされたGPTモデルとの対話ユーザーインターフェイスの構築
 
 
 
-This bonus folder contains code for running a ChatGPT-like user interface to interact with the instruction finetuned GPT from chapter 7, as shown below.
+このボーナスフォルダには、以下に示すように第7章の指示ファインチューニングされたGPTとの対話用ChatGPT風ユーザーインターフェイスを実行するコードが含まれています。
 
 
 
@@ -10,30 +10,30 @@ This bonus folder contains code for running a ChatGPT-like user interface to int
 
 
 
-To implement this user interface, we use the open-source [Chainlit Python package](https://github.com/Chainlit/chainlit).
+このユーザーインターフェイスを実装するために、オープンソースの[Chainlit Pythonパッケージ](https://github.com/Chainlit/chainlit)を使用しています。
 
 &nbsp;
-## Step 1: Install dependencies
+## ステップ1：依存関係のインストール
 
-First, we install the `chainlit` package via
+最初に、以下の方法で`chainlit`パッケージをインストールします
 
 ```bash
 pip install chainlit
 ```
 
-(Alternatively, execute `pip install -r requirements-extra.txt`.)
+（または、`pip install -r requirements-extra.txt`を実行してください。）
 
 &nbsp;
-## Step 2: Run `app` code
+## ステップ2：`app`コードの実行
 
-The [`app.py`](app.py) file contains the UI code based. Open and inspect these files to learn more.
+[`app.py`](app.py)ファイルには、UIコードが含まれています。これらのファイルを開いて詳細を学んでください。
 
-This file loads and uses the GPT-2 weights we generated in chapter 7. This requires that you execute the [`../01_main-chapter-code/ch07.ipynb`](../01_main-chapter-code/ch07.ipynb) file first.
+このファイルは、第7章で生成したGPT-2の重みを読み込んで使用します。これには、最初に[`../01_main-chapter-code/ch07.ipynb`](../01_main-chapter-code/ch07.ipynb)ファイルを実行する必要があります。
 
-Excecute the following command from the terminal to start the UI server:
+UIサーバーを開始するために、ターミナルから以下のコマンドを実行してください：
 
 ```bash
 chainlit run app.py
 ```
 
-Running commands above should open a new browser tab where you can interact with the model. If the browser tab does not open automatically, inspect the terminal command and copy the local address into your browser address bar (usually, the address is `http://localhost:8000`).
+上記のコマンドを実行すると、モデルとの対話ができる新しいブラウザタブが開きます。ブラウザタブが自動的に開かない場合は、ターミナルコマンドを確認し、ローカルアドレスをブラウザのアドレスバーにコピーしてください（通常、アドレスは`http://localhost:8000`です）。

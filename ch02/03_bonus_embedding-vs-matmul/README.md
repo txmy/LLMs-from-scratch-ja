@@ -1,3 +1,3 @@
-# Chapter 2: Working with Text Data
+# 第2章: テキストデータを扱う
 
-- [embeddings-and-linear-layers.ipynb](embeddings-and-linear-layers.ipynb) contains optional (bonus) code to explain that embedding layers and fully connected layers applied to one-hot encoded vectors are equivalent.
+- [embeddings-and-linear-layers.ipynb](embeddings-and-linear-layers.ipynb) 埋め込み層とワンホットエンコードされたベクトルに適用される全結合層が等価であることを説明するオプション（ボーナス）コードを含む。

@@ -1,23 +1,23 @@
-# Chapter 5: Pretraining on Unlabeled Data
+# 第5章: ラベルなしデータで事前学習する
 
 &nbsp;
-## Main Chapter Code
+## メインチャプターコード
 
-- [01_main-chapter-code](01_main-chapter-code) contains the main chapter code
+- [01_main-chapter-code](01_main-chapter-code) メインチャプターコードを含む
 
 &nbsp;
-## Bonus Materials
+## ボーナス教材
 
-- [02_alternative_weight_loading](02_alternative_weight_loading) contains code to load the GPT model weights from alternative places in case the model weights become unavailable from OpenAI
-- [03_bonus_pretraining_on_gutenberg](03_bonus_pretraining_on_gutenberg) contains code to pretrain the LLM longer on the whole corpus of books from Project Gutenberg
-- [04_learning_rate_schedulers](04_learning_rate_schedulers) contains code implementing a more sophisticated training function including learning rate schedulers and gradient clipping
-- [05_bonus_hparam_tuning](05_bonus_hparam_tuning) contains an optional hyperparameter tuning script
-- [06_user_interface](06_user_interface) implements an interactive user interface to interact with the pretrained LLM
-- [07_gpt_to_llama](07_gpt_to_llama) contains a step-by-step guide for converting a GPT architecture implementation to Llama 3.2 and loads pretrained weights from Meta AI
-- [08_memory_efficient_weight_loading](08_memory_efficient_weight_loading) contains a bonus notebook showing how to load model weights via PyTorch's `load_state_dict` method more efficiently
-- [09_extending-tokenizers](09_extending-tokenizers) contains a from-scratch implementation of the GPT-2 BPE tokenizer
-- [10_llm-training-speed](10_llm-training-speed) shows PyTorch performance tips to improve the LLM training speed
-- [11_qwen3](11_qwen3) A from-scratch implementation of Qwen3 0.6B and Qwen3 30B-A3B (Mixture-of-Experts) including code to load the pretrained weights of the base, reasoning, and coding model variants
+- [02_alternative_weight_loading](02_alternative_weight_loading) OpenAIからモデルの重みが利用できなくなった場合に備えて、代替の場所からGPTモデルの重みを読み込むコードを含む
+- [03_bonus_pretraining_on_gutenberg](03_bonus_pretraining_on_gutenberg) プロジェクト・グーテンベルクの全書籍コーパスでLLMをより長く事前学習するコードを含む
+- [04_learning_rate_schedulers](04_learning_rate_schedulers) 学習率スケジューラと勾配クリッピングを含むより洗練されたトレーニング関数を実装するコードを含む
+- [05_bonus_hparam_tuning](05_bonus_hparam_tuning) オプションのハイパーパラメータチューニングスクリプトを含む
+- [06_user_interface](06_user_interface) 事前学習済みLLMとやり取りするためのインタラクティブなユーザーインターフェースを実装する
+- [07_gpt_to_llama](07_gpt_to_llama) GPTアーキテクチャ実装をLlama 3.2に変換し、Meta AIから事前学習済み重みを読み込むステップバイステップガイドを含む
+- [08_memory_efficient_weight_loading](08_memory_efficient_weight_loading) PyTorchの`load_state_dict`メソッドを使用してモデルの重みをより効率的に読み込む方法を示すボーナスノートブックを含む
+- [09_extending-tokenizers](09_extending-tokenizers) GPT-2 BPEトークナイザのゼロからの実装を含む
+- [10_llm-training-speed](10_llm-training-speed) LLMトレーニング速度を改善するためのPyTorchパフォーマンスのヒントを示す
+- [11_qwen3](11_qwen3) Qwen3 0.6BとQwen3 30B-A3B（Mixture-of-Experts）のゼロからの実装で、ベース、推論、コーディングモデルバリアントの事前学習済み重みを読み込むコードを含む
 
 
 

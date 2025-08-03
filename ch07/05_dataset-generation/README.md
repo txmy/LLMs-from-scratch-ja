@@ -1,7 +1,7 @@
-# Generating Datasets for Instruction Finetuning
+# 指示ファインチューニング用データセットの生成
 
-This folder contains utility code that can be used for generating a dataset for instruction finetuning.
+このフォルダには、指示ファインチューニング用データセットの生成に使用できるユーティリティコードが含まれています。
 
-- [llama3-ollama.ipynb](llama3-ollama.ipynb): A notebook that creates a synthetic instruction finetuning dataset using Llama 3 and Ollama
+- [llama3-ollama.ipynb](llama3-ollama.ipynb): Llama 3とOllamaを使用して合成指示ファインチューニングデータセットを作成するノートブック
 
-- [reflection-gpt4.ipynb](reflection-gpt4.ipynb): A notebook that implements an instruction dataset refinement step based on reflection-tuning
+- [reflection-gpt4.ipynb](reflection-gpt4.ipynb): リフレクションチューニングに基づく指示データセットの改良ステップを実装するノートブック

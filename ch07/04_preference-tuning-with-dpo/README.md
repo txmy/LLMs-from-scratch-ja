@@ -1,7 +1,6 @@
-# Chapter 7: Finetuning to Follow Instructions
+# 第7章：指示に従うためのファインチューニング
 
-- [create-preference-data-ollama.ipynb](create-preference-data-ollama.ipynb): A notebook that creates a synthetic dataset for preference finetuning dataset using Llama 3.1 and Ollama
+- [create-preference-data-ollama.ipynb](create-preference-data-ollama.ipynb): Llama 3.1とOllamaを使用して選好ファインチューニングデータセット用の合成データセットを作成するノートブック
 
-- [dpo-from-scratch.ipynb](dpo-from-scratch.ipynb): This notebook implements Direct Preference Optimization (DPO) for LLM alignment
-
+- [dpo-from-scratch.ipynb](dpo-from-scratch.ipynb): このノートブックは、LLMアライメント用のDirect Preference Optimization（DPO）を実装します
 

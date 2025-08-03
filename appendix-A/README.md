@@ -1,11 +1,11 @@
-# Appendix A: Introduction to PyTorch
+# 付録A: PyTorchの紹介
 
 &nbsp;
-## Main Chapter Code
+## メイン章コード
 
-- [01_main-chapter-code](01_main-chapter-code) contains the main chapter code
+- [01_main-chapter-code](01_main-chapter-code) にはメイン章のコードが含まれています
 
 &nbsp;
-## Bonus Materials
+## ボーナス教材
 
-- [02_setup-recommendations](02_setup-recommendations) contains Python installation and setup recommendations.
+- [02_setup-recommendations](02_setup-recommendations) にはPythonインストールとセットアップの推奨事項が含まれています。

@@ -1,10 +1,9 @@
-# Chapter 3: Coding Attention Mechanisms
+# 第3章: アテンション機構をコーディングする
 
-### Main Chapter Code
+### メインチャプターコード
 
-- [ch03.ipynb](ch03.ipynb) contains all the code as it appears in the chapter
+- [ch03.ipynb](ch03.ipynb) 章に記載されているすべてのコードを含む
 
-### Optional Code
+### オプションコード
 
-- [multihead-attention.ipynb](multihead-attention.ipynb) is a minimal notebook with the main data loading pipeline implemented in this chapter
-
+- [multihead-attention.ipynb](multihead-attention.ipynb) この章で実装されたメインデータローディングパイプラインを含む最小限のノートブック

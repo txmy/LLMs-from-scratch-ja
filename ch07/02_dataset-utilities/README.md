@@ -1,8 +1,8 @@
-# Chapter 7: Finetuning to Follow Instructions
+# 第7章：指示に従うためのファインチューニング
 
-This folder contains utility code that can be used for preparing an instruction dataset.
+このフォルダには、指示データセットの準備に使用できるユーティリティコードが含まれています。
 
-Install the additional package requirements via:
+追加のパッケージ要件を以下の方法でインストールしてください：
 
 ```bash
 pip install -r requirements-extra.txt
@@ -11,10 +11,9 @@ pip install -r requirements-extra.txt
 
 
 
+### ほぼ重複項目の検出
 
-### Finding Near Duplicates
-
-The `find-near-duplicates.py` function can be used to identify duplicates and near-duplicates in an instruction dataset. For example,
+`find-near-duplicates.py`関数は、指示データセット内の重複項目とほぼ重複項目を識別するために使用できます。例：
 
 
 
@@ -60,21 +59,21 @@ Duplicate pair found with similarity 1.00:
 ```
 
 &nbsp;
-You can use the `--threshold` setting with a value between 0 and 1 to decrease or increase the sensitivity.
-The default threshold is 0.9.
+感度を下げたり上げたりするために、0から1の間の値で`--threshold`設定を使用できます。
+デフォルトの閾値は0.9です。
 
 
 
 &nbsp;
- ## Creating Passive Voice Entries
+ ## 受動態エントリの作成
 
- - The [create-passive-voice-entries.ipynb](create-passive-voice-entries.ipynb) notebook uses OpenAI's GPT-4 to create "passive voice" entries for an instruction dataset, as shown in the example below
+ - [create-passive-voice-entries.ipynb](create-passive-voice-entries.ipynb)ノートブックは、OpenAIのGPT-4を使用して指示データセット用の「受動態」エントリを作成します。以下の例のように表示されます
 
  ```python
  {  
     'instruction': 'Identify the verb in the following sentence',
     'input': 'The cat sleeps on the couch.',
     'output': 'The verb in the sentence is "sleeps."',
-    'output_2': 'The sentence is "sleeps."'   #  <---- Newly created entry
+    'output_2': 'The sentence is "sleeps."'   #  <---- 新しく作成されたエントリ
  }  
  ```

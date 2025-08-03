@@ -1,18 +1,18 @@
-# Chapter 7: Finetuning to Follow Instructions
+# 第7章: 指示に従うためのファインチューニング
 
 &nbsp;
-## Main Chapter Code
+## メインチャプターコード
 
-- [01_main-chapter-code](01_main-chapter-code) contains the main chapter code and exercise solutions
+- [01_main-chapter-code](01_main-chapter-code) メインチャプターコードと演習問題の解答を含む
 
 &nbsp;
-## Bonus Materials
+## ボーナス教材
 
-- [02_dataset-utilities](02_dataset-utilities) contains utility code that can be used for preparing an instruction dataset
-- [03_model-evaluation](03_model-evaluation) contains utility code for evaluating instruction responses using a local Llama 3 model and the GPT-4 API
-- [04_preference-tuning-with-dpo](04_preference-tuning-with-dpo) implements code for preference finetuning with Direct Preference Optimization (DPO)
-- [05_dataset-generation](05_dataset-generation) contains code to generate and improve synthetic datasets for instruction finetuning
-- [06_user_interface](06_user_interface) implements an interactive user interface to interact with the pretrained LLM
+- [02_dataset-utilities](02_dataset-utilities) 指示データセットの準備に使用できるユーティリティコードを含む
+- [03_model-evaluation](03_model-evaluation) ローカルのLlama 3モデルとGPT-4 APIを使用して指示応答を評価するユーティリティコードを含む
+- [04_preference-tuning-with-dpo](04_preference-tuning-with-dpo) 直接選好最適化（DPO）による選好ファインチューニングのコードを実装する
+- [05_dataset-generation](05_dataset-generation) 指示ファインチューニング用の合成データセットを生成し改善するコードを含む
+- [06_user_interface](06_user_interface) 事前学習済みLLMとやり取りするためのインタラクティブなユーザーインターフェースを実装する
 
 
 

@@ -1,39 +1,33 @@
-# Building a User Interface to Interact With the GPT-based Spam Classifier
+# GPTベースのスパム分類器と対話するユーザーインターフェースの構築
 
-
-
-This bonus folder contains code for running a ChatGPT-like user interface to interact with the finetuned GPT-based spam classifier from chapter 6, as shown below.
-
-
+このボーナスフォルダには、以下に示すように、第6章のファインチューニング済みGPTベースのスパム分類器と対話するChatGPTライクなユーザーインターフェースを実行するためのコードが含まれています。
 
 ![Chainlit UI example](https://sebastianraschka.com/images/LLMs-from-scratch-images/bonus/chainlit/chainlit-spam.webp)
 
-
-
-To implement this user interface, we use the open-source [Chainlit Python package](https://github.com/Chainlit/chainlit).
+このユーザーインターフェースを実装するために、オープンソースの[Chainlit Pythonパッケージ](https://github.com/Chainlit/chainlit)を使用します。
 
 &nbsp;
-## Step 1: Install dependencies
+## ステップ1: 依存関係のインストール
 
-First, we install the `chainlit` package via
+まず、以下を実行して`chainlit`パッケージをインストールします
 
 ```bash
 pip install chainlit
 ```
 
-(Alternatively, execute `pip install -r requirements-extra.txt`.)
+（または、`pip install -r requirements-extra.txt`を実行します。）
 
 &nbsp;
-## Step 2: Run `app` code
+## ステップ2: `app`コードの実行
 
-The [`app.py`](app.py) file contains the UI code based. Open and inspect these files to learn more.
+[`app.py`](app.py)ファイルにはUIコードが含まれています。これらのファイルを開いて調べ、詳細を学習してください。
 
-This file loads and uses the GPT-2 classifier weights we generated in chapter 6. This requires that you execute the [`../01_main-chapter-code/ch06.ipynb`](../01_main-chapter-code/ch06.ipynb) file first.
+このファイルは第6章で生成したGPT-2分類器の重みを読み込んで使用します。これには、まず[`../01_main-chapter-code/ch06.ipynb`](../01_main-chapter-code/ch06.ipynb)ファイルを実行する必要があります。
 
-Excecute the following command from the terminal to start the UI server:
+UIサーバーを開始するために、ターミナルから以下のコマンドを実行します：
 
 ```bash
 chainlit run app.py
 ```
 
-Running commands above should open a new browser tab where you can interact with the model. If the browser tab does not open automatically, inspect the terminal command and copy the local address into your browser address bar (usually, the address is `http://localhost:8000`).
+上記のコマンドを実行すると、モデルと対話できる新しいブラウザタブが開くはずです。ブラウザタブが自動的に開かない場合は、ターミナルコマンドを調べて、ローカルアドレスをブラウザのアドレスバーにコピーしてください（通常、アドレスは`http://localhost:8000`です）。

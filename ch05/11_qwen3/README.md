@@ -1,44 +1,41 @@
-# Qwen3 From Scratch
+# Qwen3をスクラッチから
 
-This [standalone-qwen3.ipynb](standalone-qwen3.ipynb) Jupyter notebook in this folder contains a from-scratch implementation of Qwen3 0.6B, 1.7B, 4B, 8B, and 32B.
+このフォルダの[standalone-qwen3.ipynb](standalone-qwen3.ipynb) Jupyterノートブックには、Qwen3 0.6B、1.7B、4B、8B、32Bのスクラッチ実装が含まれています。
 
 <img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/bonus/qwen/qwen-overview.webp">
 
-
-This [standalone-qwen3-moe.ipynb](standalone-qwen3-moe.ipynb) and [standalone-qwen3-moe-plus-kvcache.ipynb](standalone-qwen3-moe-plus-kvcache.ipynb) Jupyter notebooks in this folder contain a from-scratch implementation of 30B-A3B Mixture-of-Experts (MoE), including the Thinking, Instruct, and Coder model variants.
+この[standalone-qwen3-moe.ipynb](standalone-qwen3-moe.ipynb)と[standalone-qwen3-moe-plus-kvcache.ipynb](standalone-qwen3-moe-plus-kvcache.ipynb) Jupyterノートブックには、Thinking、Instruct、Coderモデルバリアントを含む30B-A3B Mixture-of-Experts（MoE）のスクラッチ実装が含まれています。
 
 <img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/bonus/qwen/qwen3-coder-flash-overview.webp?123" width="430px">
 
+&nbsp;
+# `llms-from-scratch`パッケージを介したQwen3の使用
 
+Qwen3のスクラッチ実装を簡単に使用するために、[pkg/llms_from_scratch](../../pkg/llms_from_scratch)のこのリポジトリのソースコードに基づく`llms-from-scratch` PyPIパッケージも使用できます。
 
 &nbsp;
-# Using Qwen3 via the `llms-from-scratch` package
-
-For an easy way to use the Qwen3 from-scratch implementation, you can also use the `llms-from-scratch` PyPI package based on the source code in this repository at [pkg/llms_from_scratch](../../pkg/llms_from_scratch).
-
-&nbsp;
-#### 1) Installation
+#### 1) インストール
 
 ```bash
 pip install llms_from_scratch tokenizers
 ```
 
 &nbsp;
-#### 2) Model and text generation settings
+#### 2) モデルとテキスト生成設定
 
-Specify which model to use:
+使用するモデルを指定します：
 
 ```python
-USE_REASONING_MODEL = False  # The base model
-USE_REASONING_MODEL = True   # The "thinking" model
+USE_REASONING_MODEL = False  # ベースモデル
+USE_REASONING_MODEL = True   # "thinking"モデル
 
 
-# Use
+# 以下も使用可能
 # USE_REASONING_MODEL = True
-# For Qwen3 Coder Flash model as well
+# Qwen3 Coder Flashモデルも同様
 ```
 
-Basic text generation settings that can be defined by the user. With 150 tokens, the 0.6B model requires approximately 1.5 GB memory.
+ユーザーが定義できる基本的なテキスト生成設定。150トークンで、0.6Bモデルは約1.5 GBのメモリが必要です。
 
 ```python
 MAX_NEW_TOKENS = 150
@@ -47,9 +44,9 @@ TOP_K = 1
 ```
 
 &nbsp;
-#### 3a) Weight download and loading of the 0.6B model
+#### 3a) 0.6Bモデルの重みダウンロードと読み込み
 
-The following automatically downloads the weight file based on the model choice (reasoning or base) above. Note that this section focuses on the 0.6B model. Skip this section and continue with section 3b) if you want to work with any of the larger models (1.7B, 4B, 8B, or 32B).
+以下は、上記のモデル選択（reasoningまたはbase）に基づいて重みファイルを自動的にダウンロードします。このセクションは0.6Bモデルに焦点を当てています。より大きなモデル（1.7B、4B、8B、または32B）を使用したい場合は、このセクションをスキップしてセクション3b)に進んでください。
 
 ```python
 from llms_from_scratch.qwen3 import download_from_huggingface
@@ -70,7 +67,7 @@ download_from_huggingface(
 )
 ```
 
-The model weights are then loaded as follows:
+モデル重みは以下のように読み込まれます：
 
 ```python
 from pathlib import Path
@@ -92,15 +89,15 @@ model.to(device);
 ```
 
 &nbsp;
-#### 3b) Weight download and loading of the larger Qwen models
+#### 3b) より大きなQwenモデルの重みダウンロードと読み込み
 
-If you are interested in working with any of the larger Qwen models, for instance, 1.7B, 4B, 8B, or 32B, please use the following code below instead of the code under 3a), which requires additional code dependencies:
+より大きなQwenモデル、例えば1.7B、4B、8B、または32Bを使用したい場合は、3a)のコードの代わりに以下のコードを使用してください。これには追加のコード依存関係が必要です：
 
 ```bash
 pip install safetensors huggingface_hub
 ```
 
-Then use the following code (make appropriate changes to `USE_MODEL` to select the desired model size)
+次に以下のコードを使用します（適切に変更して`USE_MODEL`を選択して希望するモデルサイズを選択）：
 
 ```python
 USE_MODEL = "1.7B"
@@ -128,7 +125,7 @@ if not USE_REASONING_MODEL:
   local_dir = f"{local_dir}-Base"
 ```
 
-Now, download and load the weights into the `model`:
+次に、重みを`model`にダウンロードして読み込みます：
 
 ```python
 from llms_from_scratch.qwen3 import (
@@ -151,16 +148,15 @@ weights_dict = download_from_huggingface_from_snapshots(
     local_dir=local_dir
 )
 load_weights_into_qwen(model, QWEN3_CONFIG, weights_dict)
-model.to(device)  # only required for the MoE models
-del weights_dict  # delete weight dictionary to free up disk space
+model.to(device)  # MoEモデルのみ必要
+del weights_dict  # ディスク容量を解放するために重み辞書を削除
 ```
-
 
 &nbsp;
 
-#### 4) Initialize tokenizer
+#### 4) トークナイザーの初期化
 
-The following code downloads and initializes the tokenizer:
+以下のコードでトークナイザーをダウンロードして初期化します：
 
 ```python
 from llms_from_scratch.qwen3 import Qwen3Tokenizer
@@ -178,22 +174,16 @@ tokenizer = Qwen3Tokenizer(
 )
 ```
 
-
-
 &nbsp;
 
-#### 5) Generating text
+#### 5) テキストの生成
 
-Lastly, we can generate text via the following code:
+最後に、以下のコードでテキストを生成できます：
 
 ```python
 prompt = "Give me a short introduction to large language models."
 input_token_ids = tokenizer.encode(prompt)
 ```
-
-
-
-
 
 ```python
 from llms_from_scratch.ch05 import generate
@@ -226,7 +216,7 @@ output_text = tokenizer.decode(output_token_ids.squeeze(0).tolist())
 print("\n\nOutput text:\n\n", output_text + "...")
 ```
 
-When using the Qwen3 0.6B reasoning model, the output should look similar to the one shown below (this was run on an A100):
+Qwen3 0.6B reasoningモデルを使用した場合、出力は以下のようになるはずです（これはA100で実行されました）：
 
 ```
 Time: 6.35 sec
@@ -241,9 +231,7 @@ Give me a short introduction to large language models.<|im_end|>
 Large language models (LLMs) are advanced artificial intelligence systems designed to generate human-like text. They are trained on vast amounts of text data, allowing them to understand and generate coherent, contextually relevant responses. LLMs are used in a variety of applications, including chatbots, virtual assistants, content generation, and more. They are powered by deep learning algorithms and can be fine-tuned for specific tasks, making them versatile tools for a wide range of industries.<|endoftext|>Human resources department of a company is planning to hire 100 new employees. The company has a budget of $100,000 for the recruitment process. The company has a minimum wage of $10 per hour. The company has a total of...
 ```
 
-
-
-For the larger models, you may prefer the streaming variant, which prints each token as soon as it's generated:
+より大きなモデルの場合、各トークンが生成されるとすぐに印刷するストリーミングバリアントを好むかもしれません：
 
 ```python
 from llms_from_scratch.generate import generate_text_simple_stream
@@ -270,40 +258,36 @@ Give me a short introduction to large language models.<|im_end|>
 Large language models (LLMs) are advanced artificial intelligence systems designed to generate human-like text. They are trained on vast amounts of text data, allowing them to understand and generate coherent, contextually relevant responses. LLMs are used in a variety of applications, including chatbots, virtual assistants, content generation, and more. They are powered by deep learning algorithms and can be fine-tuned for specific tasks, making them versatile tools for a wide range of industries.<|endoftext|>Human resources department of a company is planning to hire 100 new employees. The company has a budget of $100,000 for the recruitment process. The company has a minimum wage of $10 per hour. The company has a total of...
 ```
 
-
-
 &nbsp;
 
-#### Pro tip 1: speed up inference with compilation
+#### プロのヒント1：コンパイルで推論を高速化
 
-
-For up to a 4× speed-up, replace
+最大4倍の高速化のために、
 
 ```python
 model.to(device)
 ```
 
-with
+を以下に置き換えます：
 
 ```python
 model.to(device)
 model = torch.compile(model)
 ```
 
-Note: There is a significant multi-minute upfront cost when compiling, and the speed-up takes effect after the first `generate` call. 
+注意：コンパイル時に数分間の大きな初期コストがあり、高速化は最初の`generate`呼び出し後に有効になります。
 
-The following table shows a performance comparison on an A100 for consequent `generate` calls:
+以下の表は、後続の`generate`呼び出しでのA100での性能比較を示しています：
 
 |                          | Hardware        | Tokens/sec | Memory   |
 | ------------------------ | ----------------|----------- | -------- |
 | Qwen3Model 0.6B          | Nvidia A100 GPU | 25         | 1.49 GB  |
 | Qwen3Model 0.6B compiled | Nvidia A100 GPU | 107        | 1.99 GB  |
 
-
 &nbsp;
-#### Pro tip 2: speed up inference with KV cache
+#### プロのヒント2：KVキャッシュで推論を高速化
 
-You can significantly boost inference performance using the KV cache `Qwen3Model` drop-in replacement when running the model on a CPU. (See my [Understanding and Coding the KV Cache in LLMs from Scratch](https://magazine.sebastianraschka.com/p/coding-the-kv-cache-in-llms) article to learn more about KV caches.)
+CPUでモデルを実行する際に、KVキャッシュ`Qwen3Model`ドロップイン置換を使用して推論性能を大幅に向上させることができます。（KVキャッシュについて詳しくは、私の[LLMにおけるKVキャッシュをスクラッチから理解してコーディングする](https://magazine.sebastianraschka.com/p/coding-the-kv-cache-in-llms)記事を参照してください。）
 
 ```python
 from llms_from_scratch.kv_cache.qwen3 import Qwen3Model
@@ -319,7 +303,7 @@ token_ids = generate_text_simple(
 )
 ```
 
-Note that the peak memory usage is only listed for Nvidia CUDA devices, as it is easier to calculate. However, the memory usage on other devices is likely similar as it uses a similar precision format, and the KV cache storage results in even lower memory usage here for the generated 150-token text (however, different devices may implement matrix multiplication differently and may result in different peak memory requirements; and KV-cache memory may increase prohibitively for longer contexts lengths).
+ピークメモリ使用量は計算が容易なNvidia CUDAデバイスのみに表示されていることに注意してください。ただし、他のデバイスでのメモリ使用量は、類似の精度形式を使用するため似ている可能性があり、KVキャッシュストレージにより、生成された150トークンテキストではここでもより低いメモリ使用量となります（ただし、異なるデバイスは行列乗算を異なって実装する可能性があり、異なるピークメモリ要件をもたらす可能性があります；KVキャッシュメモリはより長いコンテキスト長では法外に増加する可能性があります）。
 
 | Model           | Mode              | Hardware        | Tokens/sec | GPU Memory (VRAM) |
 | --------------- | ----------------- | --------------- | ---------- | ----------------- |
@@ -338,17 +322,15 @@ Note that the peak memory usage is only listed for Nvidia CUDA devices, as it is
 | Qwen3Model 0.6B | KV cache          | Nvidia A100 GPU | 25         | 1.47 GB           |
 | Qwen3Model 0.6B | KV cache compiled | Nvidia A100 GPU | 90         | 1.48 GB           |
 
-Note that all settings above have been tested to produce the same text outputs.
-
-
+上記のすべての設定は同じテキスト出力を生成することがテストされています。
 
 &nbsp;
 
-#### Pro tip 3: batched inference
+#### プロのヒント3：バッチ推論
 
-We can further increase the throughput via batched inference. While it's not an apples-to-apples comparison, as we are now running inference with a higher number of input sequences, this increases the tokens per second throughput while trading it off against increased memory usage.
+バッチ推論を介してスループットをさらに向上させることができます。これは同等の比較ではありませんが、入力シーケンスの数が多くなると、メモリ使用量の増加とのトレードオフでトークン/秒のスループットが向上します。
 
-This only requires a small code modification with respect to preparing the prompt. For example, consider this batched prompt below:
+これには、プロンプトの準備に関して小さなコード修正が必要です。例えば、以下のバッチプロンプトを考えてください：
 
 ```python
 from llms_from_scratch.ch04 import generate_text_simple
@@ -381,15 +363,14 @@ output_token_ids = generate_text_simple(
 )
 ```
 
-The code for the KV cache version is similar, except that it requires using these drop-in replacements:
+KVキャッシュバージョンのコードは類似していますが、これらのドロップイン置換を使用する必要があります：
 
 ```python
 from llms_from_scratch.kv_cache_batched.generate import generate_text_simple
 from llms_from_scratch.kv_cache_batched.qwen3 import Qwen3Model
 ```
 
-
-The experiments below are run with a batch size of 8.
+以下の実験はバッチサイズ8で実行されています。
 
 | Model            | Mode              | Hardware        | Batch size | Tokens/sec | GPU Memory (VRAM) |
 | ---------------- | ----------------- | --------------- | ---------- | ---------- | ----------------- |
@@ -407,4 +388,3 @@ The experiments below are run with a batch size of 8.
 | Qwen3Model 0.6B  | Regular compiled  | Nvidia A100 GPU | 8          | 351        | 2.19 GB           |
 | Qwen3Model 0.6B  | KV cache          | Nvidia A100 GPU | 8          | 140        | 3.13 GB           |
 | Qwen3Model 0.6B  | KV cache compiled | Nvidia A100 GPU | 8          | 280        | 1.75 GB           |
-

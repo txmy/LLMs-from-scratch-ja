@@ -1,3 +1,3 @@
-# Byte Pair Encoding (BPE) Tokenizer From Scratch
+# バイトペアエンコーディング（BPE）トークナイザをゼロから
 
-- [bpe-from-scratch.ipynb](bpe-from-scratch.ipynb) contains optional (bonus) code that explains and shows how the BPE tokenizer works under the hood.
+- [bpe-from-scratch.ipynb](bpe-from-scratch.ipynb) BPEトークナイザの内部動作を説明し示すオプション（ボーナス）コードを含む。

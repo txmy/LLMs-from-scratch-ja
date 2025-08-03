@@ -1,14 +1,10 @@
-# Additional Experiments Classifying the Sentiment of 50k IMDB Movie Reviews
+# 50k IMDb映画レビューの感情分類追加実験
 
-## Overview
+## 概要
 
-This folder contains additional experiments to compare the (decoder-style) GPT-2 (2018) model from chapter 6 to encoder-style LLMs like [BERT (2018)](https://arxiv.org/abs/1810.04805), [RoBERTa (2019)](https://arxiv.org/abs/1907.11692), and [ModernBERT (2024)](https://arxiv.org/abs/2412.13663). Instead of using the small SPAM dataset from Chapter 6, we are using the 50k movie review dataset from IMDb ([dataset source](https://ai.stanford.edu/~amaas/data/sentiment/)) with a binary classification objective, predicting whether a reviewer liked the movie or not. This is a balanced dataset, so a random prediction should yield 50% accuracy.
+このフォルダには、第6章の（デコーダー型）GPT-2（2018）モデルを、[BERT (2018)](https://arxiv.org/abs/1810.04805)、[RoBERTa (2019)](https://arxiv.org/abs/1907.11692)、[ModernBERT (2024)](https://arxiv.org/abs/2412.13663)などのエンコーダー型LLMと比較する追加実験が含まれています。第6章の小さなSPAMデータセットではなく、IMDbの50k映画レビューデータセット（[データセットソース](https://ai.stanford.edu/~amaas/data/sentiment/)）を使用し、レビュアーが映画を気に入ったかどうかを予測する二項分類目標を設定しています。これはバランスの取れたデータセットなので、ランダム予測では50%の精度になるはずです。
 
-
-
-
-
-|       | Model                        | Test accuracy |
+|       | モデル                       | テスト精度    |
 | ----- | ---------------------------- | ------------- |
 | **1** | 124M GPT-2 Baseline          | 91.88%        |
 | **2** | 340M BERT                    | 90.89%        |
@@ -19,39 +15,33 @@ This folder contains additional experiments to compare the (decoder-style) GPT-2
 | **7** | 395M ModernBERT Large        | 95.07%        |
 | **8** | Logistic Regression Baseline | 88.85%        |
 
-
-
-
-
-
 &nbsp;
-## Step 1: Install Dependencies
+## ステップ1: 依存関係のインストール
 
-Install the extra dependencies via
+以下を実行して追加の依存関係をインストールします
 
 ```bash
 pip install -r requirements-extra.txt
 ```
 
 &nbsp;
-## Step 2: Download Dataset
+## ステップ2: データセットのダウンロード
 
-The codes are using the 50k movie reviews from IMDb ([dataset source](https://ai.stanford.edu/~amaas/data/sentiment/)) to predict whether a movie review is positive or negative.
+このコードは映画レビューが肯定的か否定的かを予測するために、IMDbの50k映画レビュー（[データセットソース](https://ai.stanford.edu/~amaas/data/sentiment/)）を使用しています。
 
-Run the following code to create the `train.csv`, `validation.csv`, and `test.csv` datasets:
+以下のコードを実行して`train.csv`、`validation.csv`、`test.csv`データセットを作成します：
 
 ```bash
 python download_prepare_dataset.py
 ```
 
-
 &nbsp;
-## Step 3: Run Models
+## ステップ3: モデルの実行
 
 &nbsp;
 ### 1) 124M GPT-2 Baseline
 
-The 124M GPT-2 model used in chapter 6, starting with pretrained weights, and finetuning all weights:
+第6章で使用した124M GPT-2モデルで、事前学習済み重みから開始し、すべての重みをファインチューニングします：
 
 ```bash
 python train_gpt.py --trainable_layers "all" --num_epochs 1
@@ -73,7 +63,6 @@ Validation accuracy: 92.32%
 Test accuracy: 91.88%
 ```
 
-
 <br>
 
 ---
@@ -83,8 +72,7 @@ Test accuracy: 91.88%
 &nbsp;
 ### 2) 340M BERT
 
-
-A 340M parameter encoder-style [BERT](https://arxiv.org/abs/1810.04805) model:
+340Mパラメータのエンコーダー型[BERT](https://arxiv.org/abs/1810.04805)モデル：
 
 ```bash
 python train_bert_hf.py --trainable_layers "all" --num_epochs 1 --model "bert"
@@ -115,9 +103,7 @@ Test accuracy: 90.89%
 &nbsp;
 ### 3) 66M DistilBERT
 
-A 66M parameter encoder-style [DistilBERT](https://arxiv.org/abs/1910.01108) model (distilled down from a 340M parameter BERT model), starting for the pretrained weights and only training the last transformer block plus output layers:
-
-
+66Mパラメータのエンコーダー型[DistilBERT](https://arxiv.org/abs/1910.01108)モデル（340MパラメータのBERTモデルから蒸留）で、事前学習済み重みから開始し、最後のTransformerブロックと出力レイヤーのみを学習します：
 
 ```bash
 python train_bert_hf.py --trainable_layers "all" --num_epochs 1 --model "distilbert"
@@ -147,8 +133,7 @@ Test accuracy: 91.40%
 &nbsp;
 ### 4) 355M RoBERTa
 
-A 355M parameter encoder-style [RoBERTa](https://arxiv.org/abs/1907.11692) model, starting for the pretrained weights and only training the last transformer block plus output layers:
-
+355Mパラメータのエンコーダー型[RoBERTa](https://arxiv.org/abs/1907.11692)モデルで、事前学習済み重みから開始し、最後のTransformerブロックと出力レイヤーのみを学習します：
 
 ```bash
 python train_bert_hf.py --trainable_layers "last_block" --num_epochs 1 --model "roberta" 
@@ -179,8 +164,7 @@ Test accuracy: 94.69%
 &nbsp;
 ### 5) 304M DeBERTa-v3
 
-A 304M parameter encoder-style [DeBERTa-v3](https://arxiv.org/abs/2111.09543) model. DeBERTa-v3 improves upon earlier versions with disentangled attention and improved position encoding.
-
+304Mパラメータのエンコーダー型[DeBERTa-v3](https://arxiv.org/abs/2111.09543)モデル。DeBERTa-v3は分離注意と改善された位置エンコーディングにより以前のバージョンを改良しています。
 
 ```bash
 python train_bert_hf.py --trainable_layers "all" --num_epochs 1 --model "deberta-v3-base"
@@ -208,18 +192,14 @@ Test accuracy: 92.95%
 
 <br>
 
-
-
 &nbsp;
 ### 6) 149M ModernBERT Base
 
-[ModernBERT (2024)](https://arxiv.org/abs/2412.13663) is an optimized reimplementation of BERT that incorporates architectural improvements like parallel residual connections and gated linear units (GLUs) to boost efficiency and performance. It maintains BERT’s original pretraining objectives while achieving faster inference and better scalability on modern hardware.
+[ModernBERT (2024)](https://arxiv.org/abs/2412.13663)は、並列残差接続やゲート型線形ユニット（GLU）などのアーキテクチャ改良を組み込んで効率性と性能を向上させたBERTの最適化された再実装です。BERTの元の事前学習目標を維持しながら、現代のハードウェアでより高速な推論と優れたスケーラビリティを実現します。
 
 ```bash
 python train_bert_hf.py --trainable_layers "all" --num_epochs 1 --model "modernbert-base"
 ```
-
-
 
 ```
 Ep 1 (Step 000000): Train loss 0.699, Val loss 0.698
@@ -243,17 +223,14 @@ Test accuracy: 93.79%
 
 <br>
 
-
 &nbsp;
 ### 7) 395M ModernBERT Large
 
-Same as above but using the larger ModernBERT variant.
+上記と同じですが、より大きなModernBERT変種を使用します。
 
 ```bash
 python train_bert_hf.py --trainable_layers "all" --num_epochs 1 --model "modernbert-large"
 ```
-
-
 
 ```
 Ep 1 (Step 000000): Train loss 0.666, Val loss 0.662
@@ -271,10 +248,6 @@ Validation accuracy: 95.30%
 Test accuracy: 95.07%
 ```
 
-
-
-
-
 <br>
 
 ---
@@ -284,8 +257,7 @@ Test accuracy: 95.07%
 &nbsp;
 ### 8) Logistic Regression Baseline
 
-A scikit-learn [logistic regression](https://sebastianraschka.com/blog/2022/losses-learned-part1.html) classifier as a baseline:
-
+ベースラインとしてのscikit-learn[ロジスティック回帰](https://sebastianraschka.com/blog/2022/losses-learned-part1.html)分類器：
 
 ```bash
 python train_sklearn_logreg.py

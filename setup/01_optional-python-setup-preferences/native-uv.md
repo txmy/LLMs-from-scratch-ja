@@ -1,39 +1,39 @@
-# Native uv Python and package management
+# ネイティブuvによるPythonとパッケージ管理
 
-This tutorial is an alternative to *Option 1: Using uv* in the [README.md](./README.md) document for those who prefer `uv`'s native commands over the `uv pip` interface. While `uv pip` is faster than pure `pip`, `uv`'s native interface is even faster than `uv pip` as it has less overhead and doesn't have to handle legacy support for PyPy package dependency management.
+このチュートリアルは、`uv pip`インターフェースよりも`uv`のネイティブコマンドを好む方のための、[README.md](./README.md)ドキュメントの*オプション1: uvの使用*の代替です。`uv pip`は純粋な`pip`よりも高速ですが、`uv`のネイティブインターフェースは、オーバーヘッドが少なく、PyPyパッケージ依存関係管理のレガシーサポートを処理する必要がないため、`uv pip`よりもさらに高速です。
 
-The table below provides a comparison of the speeds of different dependency and package management approaches. The speed comparison specifically refers to package dependency resolution during installation, not the runtime performance of the installed packages. Note that package installation is a one-time process for this project, so it is reasonable to choose the preferred approach by overall convenience, not just installation speed.
+以下の表は、さまざまな依存関係とパッケージ管理アプローチの速度の比較を示しています。速度比較は特にインストール中のパッケージ依存関係の解決を指し、インストールされたパッケージの実行時パフォーマンスではありません。このプロジェクトではパッケージのインストールは一度だけのプロセスであるため、インストール速度だけでなく、全体的な利便性で好みのアプローチを選択するのが妥当です。
 
 
-| Command               | Speed Comparison |
+| コマンド              | 速度比較 |
 |-----------------------|-----------------|
-| `conda install <pkg>` | Slowest (Baseline) |
-| `pip install <pkg>`   | 2-10× faster than above |
-| `uv pip install <pkg>`| 5-10× faster than above |
-| `uv add <pkg>`        | 2-5× faster than above |
+| `conda install <pkg>` | 最も遅い（ベースライン） |
+| `pip install <pkg>`   | 上記より2-10倍高速 |
+| `uv pip install <pkg>`| 上記より5-10倍高速 |
+| `uv add <pkg>`        | 上記より2-5倍高速 |
 
-This tutorial focuses on `uv add`.
+このチュートリアルは`uv add`に焦点を当てています。
 
 
-Otherwise, similar to *Option 1: Using uv* in the [README.md](./README.md) , this tutorial guides you through the Python setup and package installation procedure using `uv`.
+それ以外は、[README.md](./README.md)の*オプション1: uvの使用*と同様に、このチュートリアルでは`uv`を使用したPythonのセットアップとパッケージのインストール手順をガイドします。
 
-In this tutorial, I am using a computer running macOS, but this workflow is similar for Linux machines and may work for other operating systems as well.
+このチュートリアルでは、macOSを実行するコンピュータを使用していますが、このワークフローはLinuxマシンでも同様で、他のオペレーティングシステムでも機能する可能性があります。
 
 
 &nbsp;
-## 1. Install uv
+## 1. uvのインストール
 
-Uv can be installed as follows, depending on your operating system.
+Uvは、オペレーティングシステムに応じて以下のようにインストールできます。
 
 <br>
 
-**macOS and Linux**
+**macOSとLinux**
 
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-or
+または
 
 ```bash
 wget -qO- https://astral.sh/uv/install.sh | sh
@@ -49,41 +49,41 @@ powershell -c "irm https://astral.sh/uv/install.ps1 | more"
 
 &nbsp;
 
-> **Note:**
-> For more installation options, please refer to the official [uv documentation](https://docs.astral.sh/uv/getting-started/installation/#standalone-installer).
+> **注：**
+> その他のインストールオプションについては、公式の[uvドキュメント](https://docs.astral.sh/uv/getting-started/installation/#standalone-installer)を参照してください。
 
 &nbsp;
-## 2. Install Python packages and dependencies
+## 2. Pythonパッケージと依存関係のインストール
 
-To install all required packages from a `pyproject.toml` file (such as the one located at the top level of this GitHub repository), run the following command, assuming the file is in the same directory as your terminal session:
+`pyproject.toml`ファイル（このGitHubリポジトリのトップレベルにあるようなもの）から必要なすべてのパッケージをインストールするには、ファイルがターミナルセッションと同じディレクトリにあると仮定して、以下のコマンドを実行します：
 
 ```bash
 uv sync --dev --python 3.11
 ```
 
-> **Note:**
-> If you do not have Python 3.11 available on your system, uv will download and install it for you.
-> I recommend using a Python version that is at least 1-3 versions older than the most recent release to ensure PyTorch compatibility. For example, if the most recent version is Python 3.13, I recommend using version 3.10, 3.11, 3.12. You can find out the most recent Python version by visiting [python.org](https://www.python.org/downloads/).
+> **注：**
+> システムにPython 3.11が利用できない場合、uvがダウンロードしてインストールします。
+> PyTorchの互換性を確保するために、最新リリースより少なくとも1-3バージョン古いPythonバージョンを使用することをお勧めします。例えば、最新バージョンがPython 3.13の場合、バージョン3.10、3.11、3.12の使用をお勧めします。最新のPythonバージョンは[python.org](https://www.python.org/downloads/)で確認できます。
 
-> **Note:**
-> If you have problems with the following commands above due to certain dependencies (for example, if you are using Windows), you can always fall back to regular pip:
+> **注：**
+> 特定の依存関係のために上記のコマンドで問題が発生した場合（例えば、Windowsを使用している場合）、いつでも通常のpipにフォールバックできます：
 > `uv add pip`
 > `uv run python -m pip install -U -r requirements.txt`
 >
-> Since the TensorFo
+> TensorFo
 
 
 
 
-Note that the `uv sync` command above will create a separate virtual environment via the `.venv` subfolder. (In case you want to delete your virtual environment to start from scratch, you can simply delete the `.venv` folder.)
+上記の`uv sync`コマンドは、`.venv`サブフォルダを介して別の仮想環境を作成することに注意してください。（最初からやり直すために仮想環境を削除したい場合は、単に`.venv`フォルダを削除できます。）
 
-You can install new packages, that are not specified in the `pyproject.toml` via `uv add`, for example:
+`pyproject.toml`に指定されていない新しいパッケージは`uv add`でインストールできます。例えば：
 
 ```bash
 uv add packaging
 ```
 
-And you can remove packages via `uv remove`, for example,
+そして、`uv remove`でパッケージを削除できます。例えば：
 
 ```bash
 uv remove packaging
@@ -92,13 +92,13 @@ uv remove packaging
 
 
 &nbsp;
-## 3. Run Python code
+## 3. Pythonコードの実行
 
 <br>
 
-Your environment should now be ready to run the code in the repository.
+これで、リポジトリのコードを実行する環境が準備されているはずです。
 
-Optionally, you can run an environment check by executing the `python_environment_check.py` script in this repository:
+オプションで、このリポジトリの`python_environment_check.py`スクリプトを実行して環境チェックを実行できます：
 
 ```bash
 uv run python setup/02_installing-python-libraries/python_environment_check.py
@@ -111,60 +111,60 @@ uv run python setup/02_installing-python-libraries/python_environment_check.py
 
 <br>
 
-**Launching JupyterLab**
+**JupyterLabの起動**
 
-You can launch a JupyterLab instance via:
+以下でJupyterLabインスタンスを起動できます：
 
 ```bash
 uv run jupyter lab
 ```
 
-**Skipping the `uv run` command**
+**`uv run`コマンドのスキップ**
 
-If you find typing `uv run` cumbersome, you can manually activate the virtual environment as described below.
+`uv run`と入力するのが面倒な場合は、以下に説明するように手動で仮想環境をアクティベートできます。
 
-On macOS/Linux:
+macOS/Linux：
 
 ```bash
 source .venv/bin/activate
 ```
 
-On Windows (PowerShell):
+Windows（PowerShell）：
 
 ```bash
 .venv\Scripts\activate
 ```
 
-Then, you can run scripts via
+その後、スクリプトを実行できます
 
 ```bash
 python script.py
 ```
 
-and launch JupyterLab via
+JupyterLabを起動するには
 
 ```bash
 jupyter lab
 ```
 
 &nbsp;
-> **Note:**
-> If you encounter problems with the jupyter lab command, you can also start it using the full path inside your virtual environment. For example, use `.venv/bin/jupyter lab` on Linux/macOS or `.venv\Scripts\jupyter-lab` on Windows.
+> **注：**
+> jupyter labコマンドで問題が発生した場合は、仮想環境内のフルパスを使用して起動することもできます。例えば、Linux/macOSでは`.venv/bin/jupyter lab`、Windowsでは`.venv\Scripts\jupyter-lab`を使用します。
 
 &nbsp;
 
 
 &nbsp;
 
-## Optional: Manage virtual environments manually
+## オプション：仮想環境を手動で管理
 
-Alternatively, you can still install the dependencies directly from the repository using `uv pip install`. But note that this doesn't record dependencies in a `uv.lock` file as `uv add` does. Also, it requires creating and activating the virtual environment manually:
+代わりに、`uv pip install`を使用してリポジトリから直接依存関係をインストールすることもできます。ただし、これは`uv add`のように`uv.lock`ファイルに依存関係を記録しないことに注意してください。また、仮想環境を手動で作成してアクティベートする必要があります：
 
 <br>
 
-**1. Create a new virtual environment**
+**1. 新しい仮想環境の作成**
 
-Run the following command to manually create a new virtual environment, which will be saved via a new `.venv` subfolder:
+以下のコマンドを実行して新しい仮想環境を手動で作成します。これは新しい`.venv`サブフォルダとして保存されます：
 
 ```bash
 uv venv --python=python3.10
@@ -172,17 +172,17 @@ uv venv --python=python3.10
 
 <br>
 
-**2. Activate virtual environment**
+**2. 仮想環境のアクティベート**
 
-Next, we need to activate this new virtual environment.
+次に、この新しい仮想環境をアクティベートする必要があります。
 
-On macOS/Linux:
+macOS/Linux：
 
 ```bash
 source .venv/bin/activate
 ```
 
-On Windows (PowerShell):
+Windows（PowerShell）：
 
 ```bash
 .venv\Scripts\activate
@@ -190,9 +190,9 @@ On Windows (PowerShell):
 
 <br>
 
-**3. Install dependencies**
+**3. 依存関係のインストール**
 
-Finally, we can install dependencies from a remote location using the `uv pip` interface:
+最後に、`uv pip`インターフェースを使用してリモートロケーションから依存関係をインストールできます：
 
 ```bash
 uv pip install -U -r https://raw.githubusercontent.com/rasbt/LLMs-from-scratch/refs/heads/main/requirements.txt
@@ -202,4 +202,4 @@ uv pip install -U -r https://raw.githubusercontent.com/rasbt/LLMs-from-scratch/r
 
 ---
 
-Any questions? Please feel free to reach out in the [Discussion Forum](https://github.com/rasbt/LLMs-from-scratch/discussions).
+ご質問がございますか？お気軽に[ディスカッションフォーラム](https://github.com/rasbt/LLMs-from-scratch/discussions)でお問い合わせください。

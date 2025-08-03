@@ -1,7 +1,7 @@
 cff-version: 1.2.0
-message: "If you use this book or its accompanying code, please cite it as follows."
-title: "Build A Large Language Model (From Scratch), Published by Manning, ISBN 978-1633437166"
-abstract: "This book provides a comprehensive, step-by-step guide to implementing a ChatGPT-like large language model from scratch in PyTorch."
+message: "本書またはその付随コードを使用する場合は、以下のように引用してください。"
+title: "大規模言語モデルを作る（ゼロから）、Manning出版、ISBN 978-1633437166"
+abstract: "本書は、PyTorchでChatGPTのような大規模言語モデルをゼロから実装するための包括的なステップバイステップガイドを提供します。"
 date-released: 2024-09-12
 authors:
   - family-names: "Raschka"
@@ -10,9 +10,9 @@ license: "Apache-2.0"
 url: "https://www.manning.com/books/build-a-large-language-model-from-scratch"
 repository-code: "https://github.com/rasbt/LLMs-from-scratch"
 keywords:
-  - large language models
-  - natural language processing
-  - artificial intelligence
+  - 大規模言語モデル
+  - 自然言語処理
+  - 人工知能
   - PyTorch
-  - machine learning
-  - deep learning
+  - 機械学習
+  - 深層学習

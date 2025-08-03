@@ -1,13 +1,13 @@
-# Optional Setup Instructions
+# オプションのセットアップ手順
 
 
-This document lists different approaches for setting up your machine and using the code in this repository. I recommend browsing through the different sections from top to bottom and then deciding which approach best suits your needs.
+このドキュメントでは、マシンのセットアップとこのリポジトリのコードを使用するためのさまざまなアプローチをリストアップしています。上から下まで各セクションを参照して、ニーズに最も適したアプローチを決定することをお勧めします。
 
 &nbsp;
 
-## Quickstart
+## クイックスタート
 
-If you already have a Python installation on your machine, the quickest way to get started is to install the package requirements from the [../requirements.txt](../requirements.txt) file by executing the following pip installation command from the root directory of this code repository:
+マシンにPythonがすでにインストールされている場合、最も素早く始める方法は、このコードリポジトリのルートディレクトリから以下のpipインストールコマンドを実行して、[../requirements.txt](../requirements.txt)ファイルからパッケージ要件をインストールすることです：
 
 ```bash
 pip install -r requirements.txt
@@ -15,12 +15,12 @@ pip install -r requirements.txt
 
 <br>
 
-> **Note:** If you are running any of the notebooks on Google Colab and want to install the dependencies, simply run the following code in a new cell at the top of the notebook:
+> **注：** Google Colabでノートブックを実行しており、依存関係をインストールしたい場合は、ノートブックの上部の新しいセルで以下のコードを実行するだけです：
 > `pip install uv && uv pip install --system -r https://raw.githubusercontent.com/rasbt/LLMs-from-scratch/refs/heads/main/requirements.txt`
 
 
 
-In the video below, I share my personal approach to setting up a Python environment on my computer:
+以下のビデオでは、私がコンピュータにPython環境をセットアップする個人的なアプローチを共有しています：
 
 <br>
 <br>
@@ -29,67 +29,67 @@ In the video below, I share my personal approach to setting up a Python environm
 
 
 &nbsp;
-# Local Setup
+# ローカルセットアップ
 
-This section provides recommendations for running the code in this book locally. Note that the code in the main chapters of this book is designed to run on conventional laptops within a reasonable timeframe and does not require specialized hardware. I tested all main chapters on an M3 MacBook Air laptop. Additionally, if your laptop or desktop computer has an NVIDIA GPU, the code will automatically take advantage of it.
+このセクションでは、本書のコードをローカルで実行するための推奨事項を提供します。本書のメインチャプターのコードは、通常のラップトップで妥当な時間内に実行できるように設計されており、専門的なハードウェアは必要ありません。私はすべてのメインチャプターをM3 MacBook Airラップトップでテストしました。さらに、ラップトップまたはデスクトップコンピュータにNVIDIA GPUがある場合、コードは自動的にそれを活用します。
 
 &nbsp;
-## Setting up Python
+## Pythonのセットアップ
 
-If you don't have Python set up on your machine yet, I have written about my personal Python setup preferences in the following directories:
+マシンにまだPythonをセットアップしていない場合、以下のディレクトリに私の個人的なPythonセットアップの好みについて書いています：
 
 - [01_optional-python-setup-preferences](./01_optional-python-setup-preferences)
 - [02_installing-python-libraries](./02_installing-python-libraries)
 
-The *Using DevContainers* section below outlines an alternative approach for installing project dependencies on your machine.
+以下の*DevContainersの使用*セクションでは、マシンにプロジェクトの依存関係をインストールするための代替アプローチを概説しています。
 
 &nbsp;
 
-## Using Docker DevContainers
+## Docker DevContainersの使用
 
-As an alternative to the *Setting up Python* section above, if you prefer a development setup that isolates a project's dependencies and configurations, using Docker is a highly effective solution. This approach eliminates the need to manually install software packages and libraries and ensures a consistent development environment. You can find more instructions for setting up Docker and using a DevContainer:
+上記の*Pythonのセットアップ*セクションの代替として、プロジェクトの依存関係と設定を分離する開発セットアップを好む場合、Dockerの使用は非常に効果的なソリューションです。このアプローチにより、ソフトウェアパッケージとライブラリを手動でインストールする必要がなくなり、一貫した開発環境が保証されます。DockerのセットアップとDevContainerの使用に関する詳細な手順は以下を参照してください：
 
 - [03_optional-docker-environment](03_optional-docker-environment)
 
 &nbsp;
 
-## Visual Studio Code Editor
+## Visual Studio Codeエディタ
 
-There are many good options for code editors. My preferred choice is the popular open-source [Visual Studio Code (VSCode)](https://code.visualstudio.com) editor, which can be easily enhanced with many useful plugins and extensions (see the *VSCode Extensions* section below for more information). Download instructions for macOS, Linux, and Windows can be found on the [main VSCode website](https://code.visualstudio.com).
+コードエディタには多くの良い選択肢があります。私の好みの選択は、多くの有用なプラグインと拡張機能で簡単に強化できる人気のあるオープンソース[Visual Studio Code (VSCode)](https://code.visualstudio.com)エディタです（詳細については以下の*VSCode拡張機能*セクションを参照）。macOS、Linux、Windowsのダウンロード手順は、[VSCodeのメインウェブサイト](https://code.visualstudio.com)で見つけることができます。
 
 &nbsp;
 
-## VSCode Extensions
+## VSCode拡張機能
 
-If you are using Visual Studio Code (VSCode) as your primary code editor, you can find recommended extensions in the `.vscode` subfolder. These extensions provide enhanced functionality and tools helpful for this repositoy.
+Visual Studio Code（VSCode）を主要なコードエディタとして使用している場合、`.vscode`サブフォルダに推奨される拡張機能があります。これらの拡張機能は、このリポジトリに役立つ強化された機能とツールを提供します。
 
-To install these, open this "setup" folder in VSCode (File -> Open Folder...) and then click the "Install" button in the pop-up menu on the lower right.
+これらをインストールするには、VSCodeでこの「setup」フォルダを開き（ファイル -> フォルダを開く...）、右下のポップアップメニューで「インストール」ボタンをクリックします。
 
 <img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/setup/README/vs-code-extensions.webp?1" alt="1" width="700">
 
-Alternatively, you can move the `.vscode` extension folder into the root directory of this GitHub repository:
+または、`.vscode`拡張機能フォルダをこのGitHubリポジトリのルートディレクトリに移動することもできます：
 
 ```bash
 mv setup/.vscode ./
 ```
 
-Then, VSCode automatically checks if the recommended extensions are already installed on your system every time you open the `LLMs-from-scratch` main folder.
+次に、`LLMs-from-scratch`メインフォルダを開くたびに、VSCodeは推奨される拡張機能がシステムにすでにインストールされているかどうかを自動的にチェックします。
 
 &nbsp;
 
-# Cloud Resources
+# クラウドリソース
 
-This section describes cloud alternatives for running the code presented in this book.
+このセクションでは、本書で提示されるコードを実行するためのクラウドの代替案について説明します。
 
-While the code can run on conventional laptops and desktop computers without a dedicated GPU, cloud platforms with NVIDIA GPUs can substantially improve the runtime of the code, especially in chapters 5 to 7.
+コードは専用のGPUなしで通常のラップトップやデスクトップコンピュータで実行できますが、NVIDIA GPUを搭載したクラウドプラットフォームは、特に第5章から第7章でコードの実行時間を大幅に改善できます。
 
 &nbsp;
 
-## Using Lightning Studio
+## Lightning Studioの使用
 
-For a smooth development experience in the cloud, I recommend the [Lightning AI Studio](https://lightning.ai/) platform, which allows users to set up a persistent environment and use both VSCode and Jupyter Lab on cloud CPUs and GPUs.
+クラウドでのスムーズな開発体験のために、[Lightning AI Studio](https://lightning.ai/)プラットフォームをお勧めします。これにより、ユーザーは永続的な環境を設定し、クラウドCPUとGPUでVSCodeとJupyter Labの両方を使用できます。
 
-Once you start a new Studio, you can open the terminal and execute the following setup steps to clone the repository and install the dependencies:
+新しいStudioを開始したら、ターミナルを開いて以下のセットアップ手順を実行し、リポジトリをクローンして依存関係をインストールします：
 
 ```bash
 git clone https://github.com/rasbt/LLMs-from-scratch.git
@@ -97,33 +97,33 @@ cd LLMs-from-scratch
 pip install -r requirements.txt
 ```
 
-(In contrast to Google Colab, these only need to be executed once since the Lightning AI Studio environments are persistent, even if you switch between CPU and GPU machines.)
+（Google Colabとは対照的に、Lightning AI Studio環境は永続的なため、CPUマシンとGPUマシンを切り替えても、これらは一度実行するだけで済みます。）
 
-Then, navigate to the Python script or Jupyter Notebook you want to run. Optionally, you can also easily connect a GPU to accelerate the code's runtime, for example, when you are pretraining the LLM in chapter 5 or finetuning it in chapters 6 and 7.
+次に、実行したいPythonスクリプトまたはJupyter Notebookに移動します。オプションで、第5章でLLMを事前学習したり、第6章と第7章でファインチューニングしたりする際に、コードの実行時間を短縮するためにGPUを簡単に接続することもできます。
 
 <img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/setup/README/studio.webp" alt="1" width="700">
 
 &nbsp;
 
-## Using Google Colab
+## Google Colabの使用
 
-To use a Google Colab environment in the cloud, head over to [https://colab.research.google.com/](https://colab.research.google.com/) and open the respective chapter notebook from the GitHub menu or by dragging the notebook into the *Upload* field as shown in the figure below.
+クラウドでGoogle Colab環境を使用するには、[https://colab.research.google.com/](https://colab.research.google.com/)にアクセスし、GitHubメニューから該当する章のノートブックを開くか、下の図に示すようにノートブックを*アップロード*フィールドにドラッグします。
 
 <img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/setup/README/colab_1.webp" alt="1" width="700">
 
 
-Also make sure you upload the relevant files (dataset files and .py files the notebook is importing from) to the Colab environment as well, as shown below.
+また、下に示すように、関連するファイル（データセットファイルとノートブックがインポートする.pyファイル）もColab環境にアップロードしてください。
 
 <img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/setup/README/colab_2.webp" alt="2" width="700">
 
 
-You can optionally run the code on a GPU by changing the *Runtime* as illustrated in the figure below.
+以下の図に示すように、*ランタイム*を変更することで、オプションでGPUでコードを実行できます。
 
 <img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/setup/README/colab_3.webp" alt="3" width="700">
 
 
 &nbsp;
 
-# Questions?
+# 質問は？
 
-If you have any questions, please don't hesitate to reach out via the [Discussions](https://github.com/rasbt/LLMs-from-scratch/discussions) forum in this GitHub repository.
+ご質問がある場合は、このGitHubリポジトリの[Discussions](https://github.com/rasbt/LLMs-from-scratch/discussions)フォーラムで遠慮なくお問い合わせください。

@@ -1,19 +1,19 @@
-# Chapter 3: Coding Attention Mechanisms
+# 第3章: アテンション機構をコーディングする
 
 &nbsp;
-## Main Chapter Code
+## メインチャプターコード
 
-- [01_main-chapter-code](01_main-chapter-code) contains the main chapter code.
+- [01_main-chapter-code](01_main-chapter-code) メインチャプターコードを含む。
 
 &nbsp;
-## Bonus Materials
+## ボーナス教材
 
-- [02_bonus_efficient-multihead-attention](02_bonus_efficient-multihead-attention) implements and compares different implementation variants of multihead-attention
-- [03_understanding-buffers](03_understanding-buffers) explains the idea behind PyTorch buffers, which are used to implement the causal attention mechanism in chapter 3
+- [02_bonus_efficient-multihead-attention](02_bonus_efficient-multihead-attention) マルチヘッドアテンションの異なる実装バリアントを実装し比較する
+- [03_understanding-buffers](03_understanding-buffers) 第3章で因果的アテンション機構を実装するために使用されるPyTorchバッファの考え方を説明する
 
 
 
-In the video below, I provide a code-along session that covers some of the chapter contents as supplementary material.
+以下のビデオでは、章の内容の一部を補足教材としてカバーするコードアロングセッションを提供しています。
 
 <br>
 <br>

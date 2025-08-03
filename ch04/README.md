@@ -1,20 +1,20 @@
-# Chapter 4: Implementing a GPT Model from Scratch to Generate Text
+# 第4章: テキスト生成のためのGPTモデルをゼロから実装する
 
 &nbsp;
-## Main Chapter Code
+## メインチャプターコード
 
-- [01_main-chapter-code](01_main-chapter-code) contains the main chapter code.
+- [01_main-chapter-code](01_main-chapter-code) メインチャプターコードを含む。
 
 &nbsp;
-## Bonus Materials
+## ボーナス教材
 
-- [02_performance-analysis](02_performance-analysis) contains optional code analyzing the performance of the GPT model(s) implemented in the main chapter
-- [03_kv-cache](03_kv-cache) implements a KV cache to speed up the text generation during inference
-- [ch05/07_gpt_to_llama](../ch05/07_gpt_to_llama) contains a step-by-step guide for converting a GPT architecture implementation to Llama 3.2 and loads pretrained weights from Meta AI (it might be interesting to look at alternative architectures after completing chapter 4, but you can also save that for after reading chapter 5)
+- [02_performance-analysis](02_performance-analysis) メインチャプターで実装されたGPTモデルのパフォーマンスを分析するオプションコードを含む
+- [03_kv-cache](03_kv-cache) 推論中のテキスト生成を高速化するためのKVキャッシュを実装する
+- [ch05/07_gpt_to_llama](../ch05/07_gpt_to_llama) GPTアーキテクチャ実装をLlama 3.2に変換し、Meta AIから事前学習済み重みを読み込むステップバイステップガイドを含む（第4章を完了した後に代替アーキテクチャを見るのは興味深いかもしれませんが、第5章を読んだ後まで取っておくこともできます）
 
 
 
-In the video below, I provide a code-along session that covers some of the chapter contents as supplementary material.
+以下のビデオでは、章の内容の一部を補足教材としてカバーするコードアロングセッションを提供しています。
 
 <br>
 <br>

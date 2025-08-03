@@ -1,11 +1,10 @@
-# Chapter 4: Implementing a GPT Model from Scratch To Generate Text
+# 第4章: テキスト生成のためのGPTモデルをゼロから実装する
 
-### Main Chapter Code
+### メインチャプターコード
 
-- [ch04.ipynb](ch04.ipynb) contains all the code as it appears in the chapter
-- [previous_chapters.py](previous_chapters.py) is a Python module that contains the `MultiHeadAttention` module from the previous chapter, which we import in [ch04.ipynb](ch04.ipynb) to create the GPT model
+- [ch04.ipynb](ch04.ipynb) 章に記載されているすべてのコードを含む
+- [previous_chapters.py](previous_chapters.py) 前章の`MultiHeadAttention`モジュールを含むPythonモジュールで、[ch04.ipynb](ch04.ipynb)でGPTモデルを作成するためにインポートする
 
-### Optional Code
+### オプションコード
 
-- [gpt.py](gpt.py) is a standalone Python script file with the code that we implemented thus far, including the GPT model we coded in this chapter
-
+- [gpt.py](gpt.py) これまでに実装したコード（この章でコーディングしたGPTモデルを含む）を含むスタンドアロンPythonスクリプトファイル

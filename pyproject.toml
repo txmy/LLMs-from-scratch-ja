@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "llms-from-scratch"
 version = "1.0.17"
-description = "Implement a ChatGPT-like LLM in PyTorch from scratch, step by step"
+description = "PyTorchでChatGPTのようなLLMをゼロから実装する、ステップバイステップ"
 readme = "README.md"
 requires-python = ">=3.10,<3.13"
 dependencies = [

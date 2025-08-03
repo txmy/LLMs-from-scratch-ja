@@ -1,34 +1,31 @@
-# Converting GPT to Llama
+# GPTからLlamaへの変換
 
+このフォルダには、第4章と第5章のGPT実装をMeta AIのLlamaアーキテクチャに変換するコードが以下の推奨読み順で含まれています：
 
-
-This folder contains code for converting the GPT implementation from chapter 4 and 5 to Meta AI's Llama architecture in the following recommended reading order:
-
-- [converting-gpt-to-llama2.ipynb](converting-gpt-to-llama2.ipynb): contains code to convert GPT to Llama 2 7B step by step and loads pretrained weights from Meta AI
-- [converting-llama2-to-llama3.ipynb](converting-llama2-to-llama3.ipynb): contains code to convert the Llama 2 model to Llama 3, Llama 3.1, and Llama 3.2
-- [standalone-llama32.ipynb](standalone-llama32.ipynb): a standalone notebook implementing Llama 3.2
+- [converting-gpt-to-llama2.ipynb](converting-gpt-to-llama2.ipynb): GPTをLlama 2 7Bに段階的に変換し、Meta AIの事前学習済み重みを読み込むコードが含まれています
+- [converting-llama2-to-llama3.ipynb](converting-llama2-to-llama3.ipynb): Llama 2モデルをLlama 3、Llama 3.1、Llama 3.2に変換するコードが含まれています
+- [standalone-llama32.ipynb](standalone-llama32.ipynb): Llama 3.2を実装するスタンドアロンノートブック
 
 <img src="https://sebastianraschka.com/images/LLMs-from-scratch-images/bonus/gpt-to-llama/gpt-and-all-llamas.webp">
 
+&nbsp;
+### `llms-from-scratch`パッケージを介したLlama 3.2の使用
+
+Llama 3.2 1Bおよび3Bモデルを簡単に使用するために、[pkg/llms_from_scratch](../../pkg/llms_from_scratch)のこのリポジトリのソースコードに基づく`llms-from-scratch` PyPIパッケージも使用できます。
 
 &nbsp;
-### Using Llama 3.2 via the `llms-from-scratch` package
-
-For an easy way to use the Llama 3.2 1B and 3B models, you can also use the `llms-from-scratch` PyPI package based on the source code in this repository at [pkg/llms_from_scratch](../../pkg/llms_from_scratch).
-
-&nbsp;
-#### 1) Installation
+#### 1) インストール
 
 ```bash
 pip install llms_from_scratch blobfile
 ```
 
-(Note that `blobfile` is needed to load the tokenizer.)
+（`blobfile`はトークナイザーの読み込みに必要です。）
 
 &nbsp;
-#### 2) Model and text generation settings
+#### 2) モデルとテキスト生成設定
 
-Specify which model to use:
+使用するモデルを指定します：
 
 ```python
 MODEL_FILE = "llama3.2-1B-instruct.pth"
@@ -37,10 +34,10 @@ MODEL_FILE = "llama3.2-1B-instruct.pth"
 # MODEL_FILE = "llama3.2-3B-base.pth"
 ```
 
-Basic text generation settings that can be defined by the user. Note that the recommended 8192-token context size requires approximately 3 GB of VRAM for the text generation example.
+ユーザーが定義できる基本的なテキスト生成設定。推奨される8192トークンのコンテキストサイズには、テキスト生成例で約3 GBのVRAMが必要です。
 
 ```python
-# Text generation settings
+# テキスト生成設定
 if "instruct" in MODEL_FILE:
     PROMPT = "What do llamas eat?"
 else:
@@ -52,9 +49,9 @@ TOP_K = 1
 ```
 
 &nbsp;
-#### 3) Weight download and loading
+#### 3) 重みのダウンロードと読み込み
 
-This automatically downloads the weight file based on the model choice above:
+これにより、上記のモデル選択に基づいて重みファイルが自動的にダウンロードされます：
 
 ```python
 import os
@@ -67,7 +64,7 @@ if not os.path.exists(MODEL_FILE):
     print(f"Downloaded to {MODEL_FILE}")
 ```
 
-The model weights are then loaded as follows:
+モデル重みは以下のように読み込まれます：
 
 ```python
 import torch
@@ -92,9 +89,9 @@ model.to(device)
 ```
 
 &nbsp;
-#### 4) Initialize tokenizer
+#### 4) トークナイザーの初期化
 
-The following code downloads and initializes the tokenizer:
+以下のコードでトークナイザーをダウンロードして初期化します：
 
 ```python
 from llms_from_scratch.llama3 import Llama3Tokenizer, ChatFormat, clean_text
@@ -114,9 +111,9 @@ if "instruct" in MODEL_FILE:
 ```
 
 &nbsp;
-#### 5) Generating text
+#### 5) テキストの生成
 
-Lastly, we can generate text via the following code:
+最後に、以下のコードでテキストを生成できます：
 
 ```python
 import time
@@ -157,7 +154,7 @@ if "instruct" in MODEL_FILE:
 print("\n\nOutput text:\n\n", output_text)
 ```
 
-When using the Llama 3.2 1B Instruct model, the output should look similar to the one shown below:
+Llama 3.2 1B Instructモデルを使用した場合、出力は以下のようになるはずです：
 
 ```
 Time: 3.17 sec
@@ -178,13 +175,13 @@ It's worth noting that the specific diet of llamas can vary depending on factors
 ```
 
 &nbsp;
-#### Pro tip 1: speed up inference with FlashAttention
+#### プロのヒント1：FlashAttentionで推論を高速化
 
-Instead of using `Llama3Model`, you can use `Llama3ModelFast` as a drop-in replacement. For more information, I encourage you to inspect the [pkg/llms_from_scratch/llama3.py](../../pkg/llms_from_scratch/llama3.py) code.
+`Llama3Model`の代わりに、`Llama3ModelFast`をドロップイン置換として使用できます。詳細については、[pkg/llms_from_scratch/llama3.py](../../pkg/llms_from_scratch/llama3.py)コードの調査をお勧めします。
 
-The `Llama3ModelFast` replaces my from-scratch scaled dot-product code in the `GroupedQueryAttention` module with PyTorch's `scaled_dot_product` function, which uses `FlashAttention` on Ampere GPUs or newer.
+`Llama3ModelFast`は、`GroupedQueryAttention`モジュールの自作スケールドドット積コードを、Ampere GPU以降で`FlashAttention`を使用するPyTorchの`scaled_dot_product`関数で置き換えます。
 
-The following table shows a performance comparison on an A100:
+以下の表は、A100での性能比較を示しています：
 
 |                 | Tokens/sec | Memory  |
 | --------------- | ---------- | ------- |
@@ -192,25 +189,24 @@ The following table shows a performance comparison on an A100:
 | Llama3ModelFast | 54         | 2.91 GB |
 
 &nbsp;
-#### Pro tip 2: speed up inference with compilation
+#### プロのヒント2：コンパイルで推論を高速化
 
-
-For up to a 4× speed-up, replace
+最大4倍の高速化のために、
 
 ```python
 model.to(device)
 ```
 
-with
+を以下に置き換えます：
 
 ```python
 model = torch.compile(model)
 model.to(device)
 ```
 
-Note: There is a significant multi-minute upfront cost when compiling, and the speed-up takes effect after the first `generate` call. 
+注意：コンパイル時に数分間の大きな初期コストがあり、高速化は最初の`generate`呼び出し後に有効になります。
 
-The following table shows a performance comparison on an A100 for consequent `generate` calls:
+以下の表は、後続の`generate`呼び出しでのA100での性能比較を示しています：
 
 |                 | Tokens/sec | Memory  |
 | --------------- | ---------- | ------- |
@@ -218,9 +214,9 @@ The following table shows a performance comparison on an A100 for consequent `ge
 | Llama3ModelFast | 177        | 3.61 GB |
 
 &nbsp;
-#### Pro tip 3: speed up inference with compilation
+#### プロのヒント3：コンパイルで推論を高速化
 
-You can significantly boost inference performance using the KV cache `Llama3Model` drop-in replacement when running the model on a CPU. (See my [Understanding and Coding the KV Cache in LLMs from Scratch](https://magazine.sebastianraschka.com/p/coding-the-kv-cache-in-llms) article to learn more about KV caches.)
+CPUでモデルを実行する際に、KVキャッシュ`Llama3Model`ドロップイン置換を使用して推論性能を大幅に向上させることができます。（KVキャッシュについて詳しくは、私の[LLMにおけるKVキャッシュをスクラッチから理解してコーディングする](https://magazine.sebastianraschka.com/p/coding-the-kv-cache-in-llms)記事を参照してください。）
 
 ```python
 from llms_from_scratch.kv_cache.llama3 import Llama3Model
@@ -236,7 +232,7 @@ token_ids = generate_text_simple(
 )
 ```
 
-Note that the peak memory usage is only listed for Nvidia CUDA devices, as it is easier to calculate. However, the memory usage on other devices is likely similar as it uses a similar precision format, and the KV cache storage results in even lower memory usage here for the generated 150-token text (however, different devices may implement matrix multiplication differently and may result in different peak memory requirements; and KV-cache memory may increase prohibitively for longer contexts lengths).
+ピークメモリ使用量は計算が容易なNvidia CUDAデバイスのみに表示されていることに注意してください。ただし、他のデバイスでのメモリ使用量は、類似の精度形式を使用するため似ている可能性があり、KVキャッシュストレージにより、生成された150トークンテキストではここでもより低いメモリ使用量となります（ただし、異なるデバイスは行列乗算を異なって実装する可能性があり、異なるピークメモリ要件をもたらす可能性があります；KVキャッシュメモリはより長いコンテキスト長では法外に増加する可能性があります）。
 
 | Model       | Mode              | Hardware        | Tokens/sec | GPU Memory (VRAM) |
 | ----------- | ----------------- | --------------- | ---------- | ----------------- |
@@ -255,4 +251,4 @@ Note that the peak memory usage is only listed for Nvidia CUDA devices, as it is
 | Llama3Model | KV cache          | Nvidia A100 GPU | 58         | 2.87 GB           |
 | Llama3Model | KV cache compiled | Nvidia A100 GPU | 161        | 3.61 GB           |
 
-Note that all settings above have been tested to produce the same text outputs.
+上記のすべての設定は同じテキスト出力を生成することがテストされています。

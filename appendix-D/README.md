@@ -1,3 +1,3 @@
-# Appendix D: Adding Bells and Whistles to the Training Loop
+# 付録D: 訓練ループにベルとホイッスルを追加する
 
-- [01_main-chapter-code](01_main-chapter-code) contains the main chapter code.
+- [01_main-chapter-code](01_main-chapter-code) にはメイン章のコードが含まれています。

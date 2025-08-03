@@ -1,26 +1,25 @@
-# Chapter 2: Working with Text Data
+# 第2章: テキストデータを扱う
 
 &nbsp;
-## Main Chapter Code
+## メインチャプターコード
 
-- [01_main-chapter-code](01_main-chapter-code) contains the main chapter code and exercise solutions
+- [01_main-chapter-code](01_main-chapter-code) メインチャプターコードと演習問題の解答を含む
 
 &nbsp;
-## Bonus Materials
+## ボーナス教材
 
-- [02_bonus_bytepair-encoder](02_bonus_bytepair-encoder) contains optional code to benchmark different byte pair encoder implementations
+- [02_bonus_bytepair-encoder](02_bonus_bytepair-encoder) 異なるバイトペアエンコーダ実装をベンチマークするオプションコードを含む
 
-- [03_bonus_embedding-vs-matmul](03_bonus_embedding-vs-matmul) contains optional (bonus) code to explain that embedding layers and fully connected layers applied to one-hot encoded vectors are equivalent.
+- [03_bonus_embedding-vs-matmul](03_bonus_embedding-vs-matmul) 埋め込み層とワンホットエンコードされたベクトルに適用される全結合層が等価であることを説明するオプション（ボーナス）コードを含む
 
-- [04_bonus_dataloader-intuition](04_bonus_dataloader-intuition) contains optional (bonus) code to explain the data loader more intuitively with simple numbers rather than text.
+- [04_bonus_dataloader-intuition](04_bonus_dataloader-intuition) テキストではなくシンプルな数値でデータローダーをより直感的に説明するオプション（ボーナス）コードを含む
 
-- [05_bpe-from-scratch](05_bpe-from-scratch) contains (bonus) code that implements and trains a GPT-2 BPE tokenizer from scratch.
-
-
+- [05_bpe-from-scratch](05_bpe-from-scratch) GPT-2 BPEトークナイザをゼロから実装して訓練する（ボーナス）コードを含む
 
 
 
-In the video below, I provide a code-along session that covers some of the chapter contents as supplementary material.
+
+以下のビデオでは、章の内容の一部を補足教材としてカバーするコードアロングセッションを提供しています。
 
 <br>
 <br>

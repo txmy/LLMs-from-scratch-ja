@@ -1,5 +1,5 @@
-# Adding Bells and Whistles to the Training Loop
+# 学習ループへのベルと笛の追加
 
-The main chapter used a relatively simple training function to keep the code readable and fit Chapter 5 within the page limits. Optionally, we can add a linear warm-up, a cosine decay schedule, and gradient clipping to improve the training stability and convergence.
+メインチャプターでは、コードを読みやすく保ち、第5章をページ制限内に収めるために比較的シンプルな学習関数を使用しました。オプションで、線形ウォームアップ、コサインディケイスケジュール、勾配クリッピングを追加して、学習の安定性と収束を改善できます。
 
-You can find the code for this more sophisticated training function in [Appendix D: Adding Bells and Whistles to the Training Loop](../../appendix-D/01_main-chapter-code/appendix-D.ipynb).
+このより洗練された学習関数のコードは、[付録D：学習ループへのベルと笛の追加](../../appendix-D/01_main-chapter-code/appendix-D.ipynb)で見つけることができます。
